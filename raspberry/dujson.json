@@ -1,0 +1,43 @@
+{
+    "1": {
+        "temperature": {
+            "min": -10,
+            "typique": 15,
+            "max": 50 
+        }
+    },
+    "2": {
+        "humidity": {
+            "min": 0,
+            "typique": 40,
+            "max": 100
+        }
+    },
+    "3": {
+        "altitude": {
+            "min": 0,
+            "max": 5000
+        }
+    },
+    "4": {
+        "pressure": {
+            "min": 0,
+            "max": 5
+        }
+    },
+    "5": {
+        "distance": {
+            "min": 0,
+            "max": 5
+        }
+    },
+    "6": {
+        "powercontrol": {
+            "min": 0,
+            "max": 1
+        }
+    },
+    "7": {
+        ""
+    }
+}
