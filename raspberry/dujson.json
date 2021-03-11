@@ -1,22 +1,23 @@
 {
     "1": {
-        "temperature": {
-            "min": -10,
-            "typique": 15,
-            "max": 50 
+        "Digital_Input": {
+            "type": "integer",
+            "min": 0,
+            "max": 1 
         }
     },
     "2": {
-        "humidity": {
+        "Digital_Output": {
+            "type": "integer",
             "min": 0,
-            "typique": 40,
-            "max": 100
+            "max": 1
         }
     },
     "3": {
-        "altitude": {
+        "Analog_Input": {
+            "type": "float",
             "min": 0,
-            "max": 5000
+            "max": 5
         }
     },
     "4": {
