@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Graphique temps réel</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.2.6/mqtt.min.js" integrity="sha512-DD/bXhp28PWFubyhBKR7vt5FUMRCbEJ8KtC4Oq/MTWniMUytsPM5pFDaUTaHDRd7zC8cHpKvv6FaUI2OP/czlw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <ul>
+        <li><a href="">Graphique temps réel</a></li>
+        <li><a href="">Graphique monitoring</a></li>
+    </ul>
+
+    <div class="flex-container">
+        <div class="div1">
+            <div class="chart">
+                <canvas id="mainGraph"></canvas>
+            </div>
+        </div>
+        <div class="div2">
+            <button>Bouton 1</button>
+            <button>Bouton 2</button>
+        </div>
+    </div>
+
+    <script src="graph.js"></script>
+</body>
+</html>
