@@ -21,24 +21,213 @@
         }
     },
     "4": {
-        "pressure": {
+        "Analog_Output": {
+            "type": "float",
             "min": 0,
             "max": 5
         }
     },
     "5": {
-        "distance": {
+        "Generic_Sensor": {
+            "type": "cancelled",
             "min": 0,
-            "max": 5
+            "max": 10
         }
     },
     "6": {
-        "powercontrol": {
+        "Illuminance": {
+            "type": "float",
             "min": 0,
-            "max": 1
+            "max": 500000
         }
     },
     "7": {
-        ""
+        "Presence":{
+            "type":"cancelled",
+            "min":0,
+            "max":10
+        }
+    },
+    "8": {
+        "Temperature":{
+            "type":"float",
+            "min":-10,
+            "max":50
+        }
+    },
+    "9": {
+        "Humidity":{
+            "type":"float",
+            "min":0,
+            "max":100
+        }
+    },
+    "10": {
+        "Powermeas":{
+            "type":"float",
+            "min":0,
+            "max":5000
+        }
+    },
+    "11": {
+        "Actuation":{
+            "type":"cancelled",
+            "min":0,
+            "max":10
+        }
+    },
+    "12": {
+        "Set_Point":{
+            "type":"cancelled",
+            "min":0,
+            "max":10
+        }
+    },
+    "13": {
+        "Load_Control":{
+            "type":"integer",
+            "min":0,
+            "max":1
+        }
+    },
+    "14": {
+        "Light_Control":{
+            "type":"integer",
+            "min":0,
+            "max":1
+        }
+    },
+    "15": {
+        "Power_Control":{
+            "type":"cancelled",
+            "min":0,
+            "max":10
+        }
+    },
+    "16": {
+        "Accelerometer":{
+            "type":"float",
+            "min":-2,
+            "max":2
+        }
+    },
+    "17": {
+        "Magnetometer":{
+            "type":"cancelled",
+            "min":0,
+            "max":10
+        }
+    },
+    "18": {
+        "Barometer":{
+            "type":"float",
+            "min":0.1,
+            "max":2
+        }
+    },
+    "19": {
+        "Voltage":{
+            "type":"float",
+            "min":0,
+            "max":5
+        }
+    },
+    "20": {
+        "Current":{
+            "type":"float",
+            "min":0,
+            "max":5
+        }
+    },
+    "21": {
+        "Frequency":{
+            "type":"float",
+            "min":0,
+            "max":1000000
+        }
+    },
+    "22": {
+        "Depth":{
+            "type":"float",
+            "min":0,
+            "max":5
+        }
+    },
+    "23": {
+        "Percentage":{
+            "type":"float",
+            "min":0,
+            "max":100
+        }
+    },
+    "24": {
+        "Altitude":{
+            "type":"float",
+            "min":0,
+            "max":5000
+        }
+    },
+    "25": {
+        "Load":{
+            "type":"float",
+            "min":0,
+            "max":100
+        }
+    },
+    "26": {
+        "Pressure":{
+            "type":"float",
+            "min":0,
+            "max":5
+        }
+    },
+    "27": {
+        "Distance":{
+            "type":"float",
+            "min":0,
+            "max":10
+        }
+    },
+    "28": {
+        "Energy":{
+            "type":"float",
+            "min":0,
+            "max":1000
+        }
+    },
+    "29": {
+        "Direction":{
+            "type":"float",
+            "min":0,
+            "max":360
+        }
+    },
+    "30": {
+        "Time":{
+            "type":"cancelled",
+            "min":0,
+            "max":0,
+        }
+    },
+    "31": {
+        "Gyrometer":{
+            "type":"float",
+            "min":0,
+            "max":100
+        }
+    },
+    "32": {
+        "Colour":{
+            "type":"integer",
+            "min":0,
+            "max":2147483647
+        }
+    },
+    "33": {
+        "Colour":{
+            "type":"location",
+            "latitude":48.700000,
+            "longitude":2.183333
+        }
     }
 }
