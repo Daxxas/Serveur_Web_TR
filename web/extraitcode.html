@@ -1,0 +1,52 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            valeurs = [152,158,164,168,168,169,176]
+            document.write("\nMaximum : ", max(valeurs))
+            document.write("\nMinimum : ", min(valeurs))
+            document.write("\nMoyenne : ", moy(valeurs))
+            document.write("\nVariance : ", variance(valeurs))
+            document.write("\nEcart-type : ", ecart_type(valeurs))
+
+
+            function max(valeurs)
+            {
+                return Math.max.apply(Math,valeurs)
+            }
+
+            function min(valeurs)
+            {
+                return Math.min.apply(Math,valeurs)
+            }
+
+            function moy(valeurs)
+            {
+                var somme = 0
+                valeurs.forEach(element => {
+                    somme += element
+                });
+                return (somme / valeurs.length).toFixed(3)
+            }
+
+            function variance(valeurs)
+            {
+                var m = moy(valeurs)
+                v = 0
+                valeurs.forEach(element => {
+                    v=v+(element-m)**2
+                });
+
+                return(v/valeurs.length)
+            }
+
+            function ecart_type(valeurs)
+            {
+                return Math.sqrt(variance(valeurs))
+            }
+
+        </script>
+    </body>
+</html>
