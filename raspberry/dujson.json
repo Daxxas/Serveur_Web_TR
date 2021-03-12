@@ -206,7 +206,7 @@
         "Time":{
             "type":"cancelled",
             "min":0,
-            "max":0,
+            "max":0
         }
     },
     "31": {
@@ -224,7 +224,7 @@
         }
     },
     "33": {
-        "Colour":{
+        "location":{
             "type":"location",
             "latitude":48.700000,
             "longitude":2.183333
