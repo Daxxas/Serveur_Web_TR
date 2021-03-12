@@ -1,233 +1,266 @@
 {
-    "1": {
-        "Digital_Input": {
-            "type": "integer",
-            "min": 0,
-            "max": 1 
+    "1":  {
+        "informations1":  {
+            "data": "Digital_Input",
+            "type":  "integer",
+            "min":  0,
+            "max":  1 
         }
     },
-    "2": {
-        "Digital_Output": {
-            "type": "integer",
-            "min": 0,
-            "max": 1
+    "2":  {
+        "informations1":  {
+            "data": "Digital_Output",
+            "type":  "integer",
+            "min":  0,
+            "max":  1
         }
     },
-    "3": {
-        "Analog_Input": {
-            "type": "float",
-            "min": 0,
-            "max": 5
+    "3":  {
+        "informations1":  {
+            "data": "Analog_Input",
+            "type":  "float",
+            "min":  0,
+            "max":  5
         }
     },
-    "4": {
-        "Analog_Output": {
-            "type": "float",
-            "min": 0,
-            "max": 5
+    "4":  {
+        "informations1":  {
+            "data": "Analog_Output",
+            "type":  "float",
+            "min":  0,
+            "max":  5
         }
     },
-    "5": {
-        "Generic_Sensor": {
+    "5":  {
+        "informations1":  {
+            "data": "Generic_Sensor",
+            "type":  "cancelled",
+            "min":  0,
+            "max":  10
+        }
+    },
+    "6":  {
+        "informations1":  {
+            "data": "Illuminance",
+            "type":  "float",
+            "min":  0,
+            "max":  500000
+        }
+    },
+    "7":  {
+        "informations1":  {
+            "data": "Presence",
             "type": "cancelled",
             "min": 0,
             "max": 10
         }
     },
-    "6": {
-        "Illuminance": {
+    "8":  {
+        "informations1": {
+            "data": "Temperature",
+            "type": "float",
+            "min": -10,
+            "max": 50
+        }
+    },
+    "9":  {
+        "informations1": {
+            "data": "Humidity",
             "type": "float",
             "min": 0,
-            "max": 500000
+            "max": 100
         }
     },
-    "7": {
-        "Presence":{
-            "type":"cancelled",
-            "min":0,
-            "max":10
+    "10":  {
+        "informations1": {
+            "data": "Powermeas",
+            "type": "float",
+            "min": 0,
+            "max": 5000
         }
     },
-    "8": {
-        "Temperature":{
-            "type":"float",
-            "min":-10,
-            "max":50
+    "11":  {
+        "informations1": {
+            "data": "Actuation",
+            "type": "cancelled",
+            "min": 0,
+            "max": 10
         }
     },
-    "9": {
-        "Humidity":{
-            "type":"float",
-            "min":0,
-            "max":100
+    "12":  {
+        "informations1": {
+            "data": "Set_Point",
+            "type": "cancelled",
+            "min": 0,
+            "max": 10
         }
     },
-    "10": {
-        "Powermeas":{
-            "type":"float",
-            "min":0,
-            "max":5000
+    "13":  {
+        "informations1": {
+            "data": "Load_Control",
+            "type": "integer",
+            "min": 0,
+            "max": 1
         }
     },
-    "11": {
-        "Actuation":{
-            "type":"cancelled",
-            "min":0,
-            "max":10
+    "14":  {
+        "informations1": {
+            "data": "Light_Control",
+            "type": "integer",
+            "min": 0,
+            "max": 1
         }
     },
-    "12": {
-        "Set_Point":{
-            "type":"cancelled",
-            "min":0,
-            "max":10
+    "15":  {
+        "informations1": {
+            "data": "Power_Control",
+            "type": "cancelled",
+            "min": 0,
+            "max": 10
         }
     },
-    "13": {
-        "Load_Control":{
-            "type":"integer",
-            "min":0,
-            "max":1
+    "16":  {
+        "informations1": {
+            "data": "Accelerometer",
+            "type": "float",
+            "min": -2,
+            "max": 2
         }
     },
-    "14": {
-        "Light_Control":{
-            "type":"integer",
-            "min":0,
-            "max":1
+    "17":  {
+        "informations1": {
+            "data": "Magnetometer",
+            "type": "cancelled",
+            "min": 0,
+            "max": 10
         }
     },
-    "15": {
-        "Power_Control":{
-            "type":"cancelled",
-            "min":0,
-            "max":10
+    "18":  {
+        "informations1": {
+            "data": "Barometer",
+            "type": "float",
+            "min": 0.1,
+            "max": 2
         }
     },
-    "16": {
-        "Accelerometer":{
-            "type":"float",
-            "min":-2,
-            "max":2
+    "19":  {
+        "informations1": {
+            "data": "Voltage",
+            "type": "float",
+            "min": 0,
+            "max": 5
         }
     },
-    "17": {
-        "Magnetometer":{
-            "type":"cancelled",
-            "min":0,
-            "max":10
+    "20":  {
+        "informations1": {
+            "data": "Current",
+            "type": "float",
+            "min": 0,
+            "max": 5
         }
     },
-    "18": {
-        "Barometer":{
-            "type":"float",
-            "min":0.1,
-            "max":2
+    "21":  {
+        "informations1": {
+            "data": "Frequency",
+            "type": "float",
+            "min": 0,
+            "max": 1000000
         }
     },
-    "19": {
-        "Voltage":{
-            "type":"float",
-            "min":0,
-            "max":5
+    "22":  {
+        "informations1": {
+            "data": "Depth",
+            "type": "float",
+            "min": 0,
+            "max": 5
         }
     },
-    "20": {
-        "Current":{
-            "type":"float",
-            "min":0,
-            "max":5
+    "23":  {
+        "informations1": {
+            "data": "Percentage",
+            "type": "float",
+            "min": 0,
+            "max": 100
         }
     },
-    "21": {
-        "Frequency":{
-            "type":"float",
-            "min":0,
-            "max":1000000
+    "24":  {
+        "informations1": {
+            "data": "Altitude",
+            "type": "float",
+            "min": 0,
+            "max": 5000
         }
     },
-    "22": {
-        "Depth":{
-            "type":"float",
-            "min":0,
-            "max":5
+    "25":  {
+        "informations1": {
+            "data": "Load",
+            "type": "float",
+            "min": 0,
+            "max": 100
         }
     },
-    "23": {
-        "Percentage":{
-            "type":"float",
-            "min":0,
-            "max":100
+    "26":  {
+        "informations1": {
+            "data": "Pressure",
+            "type": "float",
+            "min": 0,
+            "max": 5
         }
     },
-    "24": {
-        "Altitude":{
-            "type":"float",
-            "min":0,
-            "max":5000
+    "27":  {
+        "informations1": {
+            "data": "Distance",
+            "type": "float",
+            "min": 0,
+            "max": 10
         }
     },
-    "25": {
-        "Load":{
-            "type":"float",
-            "min":0,
-            "max":100
+    "28":  {
+        "informations1": {
+            "data": "Energy",
+            "type": "float",
+            "min": 0,
+            "max": 1000
         }
     },
-    "26": {
-        "Pressure":{
-            "type":"float",
-            "min":0,
-            "max":5
+    "29":  {
+        "informations1": {
+            "data": "Direction",
+            "type": "float",
+            "min": 0,
+            "max": 360
         }
     },
-    "27": {
-        "Distance":{
-            "type":"float",
-            "min":0,
-            "max":10
+    "30":  {
+        "informations1": {
+            "data": "Time",
+            "type": "cancelled",
+            "min": 0,
+            "max": 0
         }
     },
-    "28": {
-        "Energy":{
-            "type":"float",
-            "min":0,
-            "max":1000
+    "31":  {
+        "informations1": {
+            "data": "Gyrometer",
+            "type": "float",
+            "min": 0,
+            "max": 100
         }
     },
-    "29": {
-        "Direction":{
-            "type":"float",
-            "min":0,
-            "max":360
+    "32":  {
+        "informations1": {
+            "data": "Colour",
+            "type": "integer",
+            "min": 0,
+            "max": 2147483647
         }
     },
-    "30": {
-        "Time":{
-            "type":"cancelled",
-            "min":0,
-            "max":0
-        }
-    },
-    "31": {
-        "Gyrometer":{
-            "type":"float",
-            "min":0,
-            "max":100
-        }
-    },
-    "32": {
-        "Colour":{
-            "type":"integer",
-            "min":0,
-            "max":2147483647
-        }
-    },
-    "33": {
-        "location":{
-            "type":"location",
-            "latitude":48.700000,
-            "longitude":2.183333
+    "33":  {
+        "informations1": {
+            "data": "Colour",
+            "type": "location",
+            "latitude": 48.700000,
+            "longitude": 2.183333
         }
     }
 }
