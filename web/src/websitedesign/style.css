@@ -1,3 +1,4 @@
+/*
 ul {
     list-style-type: none;
     margin: 0;
@@ -26,30 +27,51 @@ li a {
 li a:hover {
     background-color: #111;
 }
+*/
 
+body {
+    height: 100vh;
+    padding: 0;
+}
+
+.graph-button-option {
+    margin-bottom: 10px;
+}
 
 .flex-container {
-    top: 0;
-    left: 0;
-    padding-top: 45px;
-
     display: flex;
     flex-wrap: nowrap;
-    height: 100%;
+    /*Si la taille du tableau change, changer la valeur qui soustrait ici*/
+    height: calc(100% - 159px);
+    min-height: 450px;
 }
 
 
 .chart {
     overflow: auto;
+    height: 100%;
 }
-.div1 {
+.flex-child1 {
     flex: 1;
     position: relative;
-    width: 100%;
+    width: auto;
     height: 100%;
     overflow: auto;
 }
 
-.div2 {
-    width: 100px;
+.flex-child2 {
+    /* Si on veut des boutons + larges ou plus d'espace pour les boutons, changer ici */
+    width: 200px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+td, .th-center {
+    text-align: center;
+    font-size: 18px;
+}
+
+table {
+    table-layout: fixed;
+
 }
