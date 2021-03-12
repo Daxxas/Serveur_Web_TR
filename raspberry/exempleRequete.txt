@@ -1,0 +1,6 @@
+"{\"id\":1,\"Digital_Input\":0,\"Humidity\":35}"
+"{\"id\":2,\"Digital_Input\":1,\"Humidity\":90}"
+"{\"id\":8,\"Powermeas\":400,\"Illuminance\":10000}"
+"{\"id\":15,\"Frequency\":400,\"Depth\":3}"
+"{\"id\":20,\"Load\":5,\"Distance\":9,\"Direction\":9}"
+
