@@ -6,25 +6,86 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.2.6/mqtt.min.js" integrity="sha512-DD/bXhp28PWFubyhBKR7vt5FUMRCbEJ8KtC4Oq/MTWniMUytsPM5pFDaUTaHDRd7zC8cHpKvv6FaUI2OP/czlw==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
 
 </head>
 <body>
-    <ul>
-        <li><a href="">Graphique temps réel</a></li>
-        <li><a href="">Graphique monitoring</a></li>
-    </ul>
+    <nav class="navbar navbar-expand navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Graphique temps réel</a>
+
+    <div id="navbarColor01" style="">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Graphique différé</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
     <div class="flex-container">
-        <div class="div1">
+        <div class="flex-child1">
             <div class="chart">
                 <canvas id="mainGraph"></canvas>
             </div>
         </div>
-        <div class="div2">
-            <button>Bouton 1</button>
-            <button>Bouton 2</button>
+        <div class="flex-child2">
+                <!-- Rajouter des boutons ici si besoin -->
+
+            <div class="custom-control custom-switch" data-children-count="1">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
+                <label class="custom-control-label" for="customSwitch1">Capteur #1</label>
+            </div>
+            <div class="custom-control custom-switch" data-children-count="1">
+                <input type="checkbox" class="custom-control-input" id="customSwitch2" checked="">
+                <label class="custom-control-label" for="customSwitch2">Capteur #2</label>
+            </div>
+            <div class="custom-control custom-switch" data-children-count="1">
+                <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="">
+                <label class="custom-control-label" for="customSwitch3">Capteur #3</label>
+            </div>
+            <div class="custom-control custom-switch" data-children-count="1">
+                <input type="checkbox" class="custom-control-input" id="customSwitch4" checked="">
+                <label class="custom-control-label" for="customSwitch4">Capteur #4</label>
+            </div>
+            <div class="custom-control custom-switch" data-children-count="1">
+                <input type="checkbox" class="custom-control-input" id="customSwitch5" checked="">
+                <label class="custom-control-label" for="customSwitch5">Capteur #5</label>
+            </div>
         </div>
     </div>
+
+<table class="table table-primary">
+    <thead>
+    <tr>
+        <th scope="col">
+            <div class="th-center">Moyenne</div>
+        </th>
+        <th scope="col">
+            <div class="th-center">Variance</div>
+        </th>
+        <th scope="col">
+            <div class="th-center">Ecart-Type</div>
+        </th>
+        <th scope="col">
+            <div class="th-center">Min</div>
+        </th>
+        <th scope="col">
+            <div class="th-center">Max</div>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>0.00</td>
+        <td>0.00</td>
+        <td>0.00</td>
+        <td>0.00</td>
+        <td>0.00</td>
+    </tr>
+
+    </tbody>
+</table>
+
 
     <script src="graph.js"></script>
 </body>
