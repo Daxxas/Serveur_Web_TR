@@ -5,11 +5,11 @@
     <body>
         <script>
             valeurs = [152,158,164,168,168,169,176]
-            document.write("\nMaximum : ", max(valeurs))
-            document.write("\nMinimum : ", min(valeurs))
-            document.write("\nMoyenne : ", moy(valeurs))
-            document.write("\nVariance : ", variance(valeurs))
-            document.write("\nEcart-type : ", ecart_type(valeurs))
+            //document.write("\nMaximum : ", max(valeurs))
+            //document.write("\nMinimum : ", min(valeurs))
+            //document.write("\nMoyenne : ", moy(valeurs))
+            //document.write("\nVariance : ", variance(valeurs))
+            //document.write("\nEcart-type : ", ecart_type(valeurs))
 
 
             function max(valeurs)
@@ -46,6 +46,44 @@
             {
                 return Math.sqrt(variance(valeurs))
             }
+
+            //Declaration
+            function Capteur(id) {
+                this.id = id;
+                this.dataset = new Map();
+            }
+            function Registre() {
+                this.capteurs = new Map()
+            }
+            
+            //Create objects
+            var registre = new Registre()
+            var myCapteur = new Capteur(15)
+
+            //Populate
+            var values = [15,20,30,15,48,68,10,2,64,100]
+            myCapteur.dataset.set('Temperature', values)
+            var values = [15,20,30,15,48,68,10,2,64,100]
+            myCapteur.dataset.set('Humidity', values)
+
+
+            registre.capteurs.set(myCapteur.id,myCapteur)
+            document.writeln("<p>Registre : ", registre.capteurs.size,"</p>")
+            
+            registre.capteurs.forEach(capteur => {
+                document.write("<p> Capteur numéro : ", capteur.id,"</p>")
+                var cles = Array.from(capteur.dataset.keys())
+                cles.forEach(cle => {
+                    document.write("<p>",cle," -> ", capteur.dataset.get(cle),"</p>")
+                });
+                
+            });
+            
+            
+            
+
+
+
 
         </script>
     </body>
