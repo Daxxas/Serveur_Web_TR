@@ -47,41 +47,107 @@
                 return Math.sqrt(variance(valeurs))
             }
 
+            /*
+                Registre
+                    Capteur1
+                        id
+                        dataset
+                            Temperature
+                                15 - 19272616282
+                                30 - 19272819282
+                                ...
+                            Humidity
+                                20 - 19999999999
+                                21 - 19999999999
+                                30 - 19999999999
+                                ...
+                    Capteur2
+                        id
+                        dataset
+                            Digital_Output
+                                0  - 19999999999
+                                ...
+                            ...
+
+
+
+
+
+            */
+
             //Declaration
             function Capteur(id) {
                 this.id = id;
                 this.dataset = new Map();
+                this.addValue = function(type,value){
+                    if(typeof(value) == "object")
+                    {
+                        var number = 0
+                        value.forEach(data => {
+                            number = number+1
+                            if(!(this.dataset.has(type+number)))
+                                {
+                                    this.dataset.set(type+number, new Array())
+                                }
+                            this.dataset.get(type+number).push([data,Date.now()])
+                        });
+                    }else if(!(this.dataset.has(type)))
+                    {
+                        this.dataset.set(type, new Array())
+                        this.dataset.get(type).push([value,Date.now()])
+                    }else
+                    this.dataset.get(type).push([value,Date.now()])
+
+                }
             }
             function Registre() {
                 this.capteurs = new Map()
+                this.addCapteur = function(capteur_object)
+                {
+                    this.capteurs.set(capteur_object.id,capteur_object)
+                }
             }
             
             //Create objects
             var registre = new Registre()
             var myCapteur = new Capteur(15)
+            var secondCapteur = new Capteur(1)
 
             //Populate
-            var values = [15,20,30,15,48,68,10,2,64,100]
-            myCapteur.dataset.set('Temperature', values)
-            var values = [15,20,30,15,48,68,10,2,64,100]
-            myCapteur.dataset.set('Humidity', values)
+            myCapteur.dataset.set('Temperature', new Array())
+            myCapteur.addValue('Temperature',15)
+            myCapteur.addValue('Temperature',20)
+            myCapteur.addValue('Temperature',10)
+            myCapteur.addValue('Temperature',30)
+            myCapteur.addValue('Temperature',17)
+            
+
+            secondCapteur.dataset.set('Humidity', new Array())
+            secondCapteur.addValue('Humidity',32)
+            secondCapteur.addValue('Humidity',16)
+            secondCapteur.addValue('Humidity',20)
+            secondCapteur.addValue('Humidity',10)
+            secondCapteur.addValue('Humidity',18)
+            secondCapteur.addValue('Temperature',[16,19,16])
+            secondCapteur.addValue('Temperature',[20,30,16])
 
 
-            registre.capteurs.set(myCapteur.id,myCapteur)
-            document.writeln("<p>Registre : ", registre.capteurs.size,"</p>")
+
+            registre.addCapteur(myCapteur)
+            registre.addCapteur(secondCapteur)
+            document.writeln("<p>Registre</p>")
             
             registre.capteurs.forEach(capteur => {
-                document.write("<p> Capteur numéro : ", capteur.id,"</p>")
+                document.write("<p>&emsp;Capteur numéro : ", capteur.id,"</p>")
                 var cles = Array.from(capteur.dataset.keys())
                 cles.forEach(cle => {
-                    document.write("<p>",cle," -> ", capteur.dataset.get(cle),"</p>")
+                    document.write("<p>&emsp;&emsp;",cle,"</p>")
+                        capteur.dataset.get(cle).forEach(value => {
+                            document.write("<p id='value'>&emsp;&emsp;&emsp;"+value[0]+" at "+ value[1] +"</p>")
+                        });
                 });
                 
             });
-            
-            
-            
-
 
 
 
