@@ -48,8 +48,8 @@
             }
 
             /*
-                Registre
-                    Capteur1
+                Register
+                    Sensor1
                         id
                         dataset
                             Temperature
@@ -61,7 +61,7 @@
                                 21 - 19999999999
                                 30 - 19999999999
                                 ...
-                    Capteur2
+                    Sensor2
                         id
                         dataset
                             Digital_Output
@@ -71,7 +71,7 @@
             */
 
             //Declaration
-            function Capteur(id) {
+            function Sensor(id) {
                 this.id = id;
                 this.dataset = new Map();
                 this.addValue = function(type,value){
@@ -95,56 +95,95 @@
 
                 }
             }
-            function Registre() {
-                this.capteurs = new Map()
-                this.addCapteur = function(capteur_object)
+            function Register() {
+                this.Sensors = new Map()
+                this.addSensor = function(Sensor_object)
                 {
-                    this.capteurs.set(capteur_object.id,capteur_object)
+                    if(!(this.Sensors.has(Sensor_object.id)))
+                    {
+                        this.Sensors.set(Sensor_object.id,Sensor_object)
+                    }
                 }
             }
             
             //Create objects
-            var registre = new Registre()
-            var myCapteur = new Capteur(15)
-            var secondCapteur = new Capteur(1)
+            var Register = new Register()
+            var mySensor = new Sensor(15)
+            var secondSensor = new Sensor(1)
 
             //Populate
-            myCapteur.dataset.set('Temperature', new Array())
-            myCapteur.addValue('Temperature',15)
-            myCapteur.addValue('Temperature',20)
-            myCapteur.addValue('Temperature',10)
-            myCapteur.addValue('Temperature',30)
-            myCapteur.addValue('Temperature',17)
+/*             mySensor.dataset.set('Temperature', new Array())
+            mySensor.addValue('Temperature',15)
+            mySensor.addValue('Temperature',20)
+            mySensor.addValue('Temperature',10)
+            mySensor.addValue('Temperature',30)
+            mySensor.addValue('Temperature',17)
             
 
-            secondCapteur.dataset.set('Humidity', new Array())
-            secondCapteur.addValue('Humidity',32)
-            secondCapteur.addValue('Humidity',16)
-            secondCapteur.addValue('Humidity',20)
-            secondCapteur.addValue('Humidity',10)
-            secondCapteur.addValue('Humidity',18)
-            secondCapteur.addValue('Temperature',[16,19,16])
-            secondCapteur.addValue('Temperature',[20,30,16])
+            secondSensor.dataset.set('Humidity', new Array())
+            secondSensor.addValue('Humidity',32)
+            secondSensor.addValue('Humidity',16)
+            secondSensor.addValue('Humidity',20)
+            secondSensor.addValue('Humidity',10)
+            secondSensor.addValue('Humidity',18)
+            secondSensor.addValue('Temperature',[16,19,16])
+            secondSensor.addValue('Temperature',[20,30]) */
 
 
-
-            registre.addCapteur(myCapteur)
-            registre.addCapteur(secondCapteur)
-            document.writeln("<p>Registre</p>")
             
-            registre.capteurs.forEach(capteur => {
-                document.write("<p>&emsp;Capteur numéro : ", capteur.id,"</p>")
-                var cles = Array.from(capteur.dataset.keys())
+
+            function display() {
+                var el = document.getElementById('Register_display');
+                if(el != null)
+                {
+                    el.remove()
+                }
+
+
+
+                document.write("<div id='Register_display'>")
+                document.writeln("<p>Register</p>")
+                Register.Sensors.forEach(Sensor => {
+                document.write("<p class='Sensor'>&emsp;Sensor numéro : ", Sensor.id,"</p>")
+                var cles = Array.from(Sensor.dataset.keys())
                 cles.forEach(cle => {
-                    document.write("<p>&emsp;&emsp;",cle,"</p>")
-                        capteur.dataset.get(cle).forEach(value => {
+                    document.write("<p id='cle'>&emsp;&emsp;",cle,"</p>")
+                        Sensor.dataset.get(cle).forEach(value => {
                             document.write("<p id='value'>&emsp;&emsp;&emsp;"+value[0]+" at "+ value[1] +"</p>")
                         });
                 });
-                
             });
+                document.write("</div>")
+            }
+
+            function add()
+            {
+                var id = Math.floor(Math.random() *3)
+                var value = Math.floor(Math.random()*55)
+                Register.addSensor(new Sensor(id))
+                Register.Sensors.get(id).addValue('Temperature',value)
+
+                display()
+            }
+            var i = 0
+            while(i < 10){
+                setTimeout(add,1000)
+                i = i + 1
+            }
 
 
+            function getAllDataFromASensor(id,type){
+                var toReturn = []
+
+                var length = Register.Sensors.get(id).dataset.get(type).length
+                for (let index = 0; index < length; index++) {
+                    toReturn.push(Register.Sensors.get(id).dataset.get(type))
+                    
+                }
+                return toReturn
+            }
+
+            
 
         </script>
     </body>
