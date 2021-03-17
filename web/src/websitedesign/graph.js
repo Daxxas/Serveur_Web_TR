@@ -32,3 +32,4 @@ var myChart = new Chart(ctx, {
         maintainAspectRatio: false
     }
 });
+//myChart.render()
