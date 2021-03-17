@@ -111,26 +111,6 @@
             var mySensor = new Sensor(15)
             var secondSensor = new Sensor(1)
 
-            //Populate
-/*             mySensor.dataset.set('Temperature', new Array())
-            mySensor.addValue('Temperature',15)
-            mySensor.addValue('Temperature',20)
-            mySensor.addValue('Temperature',10)
-            mySensor.addValue('Temperature',30)
-            mySensor.addValue('Temperature',17)
-            
-
-            secondSensor.dataset.set('Humidity', new Array())
-            secondSensor.addValue('Humidity',32)
-            secondSensor.addValue('Humidity',16)
-            secondSensor.addValue('Humidity',20)
-            secondSensor.addValue('Humidity',10)
-            secondSensor.addValue('Humidity',18)
-            secondSensor.addValue('Temperature',[16,19,16])
-            secondSensor.addValue('Temperature',[20,30]) */
-
-
-            
 
             function display() {
                 var el = document.getElementById('Register_display');
@@ -158,19 +138,33 @@
 
             function add()
             {
-                var id = Math.floor(Math.random() *3)
+                var id = Math.floor(Math.random() *20)
                 var value = Math.floor(Math.random()*55)
                 Register.addSensor(new Sensor(id))
-                Register.Sensors.get(id).addValue('Temperature',value)
-
-                display()
+                var val = Math.random()
+                if(val <= 0.2)
+                {
+                    Register.Sensors.get(id).addValue('Temperature',value)
+                }else if(val <= 0.3)
+                {
+                    Register.Sensors.get(id).addValue('Humidity',value)
+                }else if(val <= 0.5)
+                {
+                    Register.Sensors.get(id).addValue('Digital_Output',Math.floor(Math.random()))
+                }else if(val <= 0.7)
+                {
+                    Register.Sensors.get(id).addValue('Temperature',new Array(Math.floor(Math.random()*55),Math.floor(Math.random()*55),Math.floor(Math.random()*55),Math.floor(Math.random()*55)))
+                }
             }
-            var i = 0
-            while(i < 10){
-                setTimeout(add,1000)
-                i = i + 1
-            }
 
+            for (let _ = 0; _ < 100; _++) {
+                add()
+            }
+            var _Sensor = new Sensor(0)
+            Register.addSensor(_Sensor)
+            Register.Sensors.get(0).addValue('Humidity',[15,61,54,48,4])
+            display()
+            console.log("go")
 
             function getAllDataFromASensor(id,type){
                 var toReturn = []
@@ -183,8 +177,45 @@
                 return toReturn
             }
 
-            
+
+
+                    
+                    
+                    function download_csv() {
+                        var data = []
+                        Register.Sensors.forEach(Sensor => {
+                            var cles = Array.from(Sensor.dataset.keys())
+                            cles.forEach(cle => {
+                                data.push(new Array)
+                                data[data.length-1].push(Sensor.id)
+                                data[data.length-1].push(cle)
+                                var values = ""
+                                    Sensor.dataset.get(cle).forEach(value => {
+                                        values += (value[0]+"-"+value[1]) + ";"
+                                    });
+                                values = values.slice(0,-1)
+                                data[data.length-1].push(values)
+                        });
+                    });
+
+
+
+                        var csv = 'ID,TYPE,VALUE\n';
+                        data.sort(function(a, b){return a[0] - b[0]});
+                        data.forEach(function(row) {
+                                csv += row.join(',');
+                                csv += "\n";
+                        });
+                    
+                        console.log(csv);
+                        var hiddenElement = document.createElement('a');
+                        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+                        hiddenElement.target = '_blank';
+                        hiddenElement.download = 'data.csv';
+                        hiddenElement.click();
+                    }
 
         </script>
+        <button onclick="download_csv()">Download CSV</button> 
     </body>
 </html>
