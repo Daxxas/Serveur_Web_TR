@@ -29,32 +29,67 @@
             </div>
         </div>
         <div class="flex-child2">
+            <div class="switchbuttons">
                 <!-- Rajouter des boutons ici si besoin -->
+                <div class="capteur-category">
+                    <div class="custom-control custom-switch capteur-header" data-children-count="1">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
+                        <label class="custom-control-label" for="customSwitch1">Capteur 1</label>
+                    </div>
+                    <div class="custom-control custom-switch capteur-child" data-children-count="1">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch2" checked="">
+                        <label class="custom-control-label" for="customSwitch2">Temperature</label>
+                    </div>
+                    <div class="custom-control custom-switch capteur-child" data-children-count="1">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="">
+                        <label class="custom-control-label" for="customSwitch3">Humidité</label>
+                    </div>
+                </div>
 
-            <div class="custom-control custom-switch" data-children-count="1">
-                <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
-                <label class="custom-control-label" for="customSwitch1">Capteur #1</label>
-            </div>
-            <div class="custom-control custom-switch" data-children-count="1">
-                <input type="checkbox" class="custom-control-input" id="customSwitch2" checked="">
-                <label class="custom-control-label" for="customSwitch2">Capteur #2</label>
-            </div>
-            <div class="custom-control custom-switch" data-children-count="1">
-                <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="">
-                <label class="custom-control-label" for="customSwitch3">Capteur #3</label>
-            </div>
-            <div class="custom-control custom-switch" data-children-count="1">
-                <input type="checkbox" class="custom-control-input" id="customSwitch4" checked="">
-                <label class="custom-control-label" for="customSwitch4">Capteur #4</label>
-            </div>
-            <div class="custom-control custom-switch" data-children-count="1">
-                <input type="checkbox" class="custom-control-input" id="customSwitch5" checked="">
-                <label class="custom-control-label" for="customSwitch5">Capteur #5</label>
+                <div class="capteur-category">
+                    <div class="custom-control custom-switch capteur-header" data-children-count="1">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch4" checked="">
+                        <label class="custom-control-label align-middle" for="customSwitch4">Capteur 2</label>
+                    </div>
+                    <div class="custom-control custom-switch capteur-child" data-children-count="1">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch5" checked="">
+                        <label class="custom-control-label" for="customSwitch5">Temperature</label>
+                    </div>
+
+                    <div class="custom-control custom-switch capteur-child" data-children-count="1">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch6" checked="">
+                        <label class="custom-control-label" for="customSwitch6">Humidité</label>
+                    </div>
+                </div>
+
+                <div class="capteur-category">
+                    <div class="custom-control custom-switch capteur-header" data-children-count="1">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch7" checked="">
+                        <label class="custom-control-label align-middle" for="customSwitch7">Capteur 3</label>
+                    </div>
+                    <div class="custom-control custom-switch capteur-child" data-children-count="1">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch8" checked="">
+                        <label class="custom-control-label" for="customSwitch8">Altitude</label>
+                    </div>
+
+                    <div class="custom-control custom-switch capteur-child" data-children-count="1">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch9" checked="">
+                        <label class="custom-control-label" for="customSwitch9">Latitude</label>
+                    </div>
+                </div>
+                <!-- Fin des catégories mis à la main ici -->
+
             </div>
 
+            <div class="exportbuttons">
+                <button class="btn btn-primary export-btn">Export CSV</button>
+                <button class="btn btn-primary export-btn">Export PDF</button>
+                <button class="btn btn-primary export-btn">Export Image</button>
+            </div>
 
         </div>
     </div>
+
 
 <table class="table table-primary">
     <thead>
@@ -89,7 +124,8 @@
 </table>
 
 
-    <script src="graph.js"></script>
+<script src="graph.js"></script>
+<script src="controler.js"></script>
 
 </body>
 </html>
