@@ -1,6 +1,4 @@
-
 function headerSwitch(childs, parentSwitch) {
-
     for(let i = 0; i < childs.length; i++) {
 
         let childSwitch = childs[i].getElementsByClassName("custom-control-input")
@@ -22,7 +20,9 @@ let switchbuttons = document.getElementsByClassName("switchbuttons")[0]
 // TODO : changer le nombre de bouton quand il n'y en aura plus par défaut
 let buttoncount = 10; // nombre de bouton présent de base
 
-function AddCapteur() {
+let capteurNameBiggestWidth = 0;
+
+function AddCapteur(nom) {
     let currentCapteurIndex = document.getElementsByClassName("capteur-category").length
 
     currentCapteurIndex++
@@ -47,7 +47,13 @@ function AddCapteur() {
     let switchheaderlabel = document.createElement("label")
     switchheaderlabel.className = "custom-control-label"
     switchheaderlabel.setAttribute("for", "customSwitch"+buttoncount)
-    switchheaderlabel.textContent = "Capteur " + arguments[0]
+    if(nom != null) {
+        switchheaderlabel.textContent = "Capteur " + nom
+    }
+    else {
+        switchheaderlabel.textContent = "Capteur"
+    }
+
     buttoncount++
     headerdiv.appendChild(switchheaderlabel)
 
@@ -65,6 +71,7 @@ function AddCapteur() {
         switchchildinput.setAttribute("checked", "")
         switchchildinput.checked = false;
         switchchildinput.id = "customSwitch" + buttoncount
+        switchchildinput.addEventListener("change", function() {CapteurContentSwitch(nom, arguments[i])})
         childdiv.appendChild(switchchildinput)
 
 
@@ -77,10 +84,29 @@ function AddCapteur() {
 
         categorydiv.appendChild(childdiv)
     }
+
+    if(capteurNameBiggestWidth < headerdiv.offsetWidth) {
+        capteurNameBiggestWidth = headerdiv.offsetWidth
+        document.documentElement.style.setProperty("minwidtheheader", capteurNameBiggestWidth)
+    }
+
     switchbuttons.appendChild(categorydiv)
 }
 
-AddCapteur("1","Temperature","Humidity")
+function CapteurContentSwitch(id, type) {
+    // Faire ce que tu veux avec ton id et type bbast
+}
+
+
+AddCapteur("1", "truc1", "truc2")
+AddCapteur("2", "truc1", "truc2")
+AddCapteur("3", "truc1", "truc2")
+AddCapteur("4", "truc1", "truc2")
+
+let all = document.querySelectorAll(".capteur-header");
+for (let i = 0; i < all.length; i++) {
+    all[i].style.minWidth = String(capteurNameBiggestWidth) + "px"
+}
 
 let capteurCategory = document.getElementsByClassName("capteur-category")
 
