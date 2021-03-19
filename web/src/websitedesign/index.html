@@ -37,9 +37,9 @@
             </div>
 
             <div class="exportbuttons">
-                <button class="btn btn-primary export-btn">Export CSV</button>
-                <button class="btn btn-primary export-btn">Export PDF</button>
-                <button class="btn btn-primary export-btn">Export Image</button>
+                <button id="btn_exportcsv" class="btn btn-primary export-btn">Export CSV</button>
+                <button id="btn_exportpdf" class="btn btn-primary export-btn">Export PDF</button>
+                <button id="btn_exportimage" class="btn btn-primary export-btn">Export Image</button>
             </div>
 
         </div>
@@ -79,8 +79,7 @@
     </table>
 
 
-    <button onclick="addValue()">test</button>
-    <button onclick="publish()">publish</button>
+
 
     <form>
         <input type="checkbox" onchange="display('Temperature')" id="Temperature" name=""><label>Temperature</label>
@@ -93,6 +92,7 @@
 
     <script src="graph.js"></script>
     <script src="controler.js"></script>
-
+    <script src="export.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 </body>
 </html>

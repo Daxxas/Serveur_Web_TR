@@ -1,10 +1,7 @@
 
 function headerSwitch(childs, parentSwitch) {
 
-    console.log(parentSwitch.checked)
-
     for(let i = 0; i < childs.length; i++) {
-        console.log(childs[i])
 
         let childSwitch = childs[i].getElementsByClassName("custom-control-input")
 
@@ -50,7 +47,7 @@ function AddCapteur() {
     let switchheaderlabel = document.createElement("label")
     switchheaderlabel.className = "custom-control-label"
     switchheaderlabel.setAttribute("for", "customSwitch"+buttoncount)
-    switchheaderlabel.textContent = "Capteur " + currentCapteurIndex
+    switchheaderlabel.textContent = "Capteur " + arguments[0]
     buttoncount++
     headerdiv.appendChild(switchheaderlabel)
 
@@ -58,7 +55,7 @@ function AddCapteur() {
 
 
 
-    for(let i = 0; i < arguments.length; i++) {
+    for(let i = 1; i < arguments.length; i++) {
         let childdiv = document.createElement("div")
         childdiv.className = "custom-control custom-switch capteur-child"
 
@@ -83,7 +80,7 @@ function AddCapteur() {
     switchbuttons.appendChild(categorydiv)
 }
 
-AddCapteur()
+AddCapteur("1","Temperature","Humidity")
 
 let capteurCategory = document.getElementsByClassName("capteur-category")
 
