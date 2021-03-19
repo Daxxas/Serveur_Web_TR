@@ -88,7 +88,7 @@ function AddTypeToCapteur(id, type) {
     switchchildinput.setAttribute("checked", "")
     switchchildinput.checked = false;
     switchchildinput.id = "customSwitch" + buttoncount
-    switchchildinput.addEventListener("change", function() {CapteurContentSwitch(id, type)})
+    switchchildinput.addEventListener("change", function() {CapteurContentSwitch(id, type,switchchildinput)})
     childdiv.appendChild(switchchildinput)
 
 
@@ -103,10 +103,36 @@ function AddTypeToCapteur(id, type) {
 
     RefreshCapteur()
 }
-
+var placementChart = new Map()
 function CapteurContentSwitch(id, type) {
-    console.log("ID " + id)
-    console.log("Type " +type)
+    if (!placementChart.has(id+type)){
+        var newDataset = {
+            label: type + " du capteur " + id,
+            borderColor: getRandomColor(),
+            backgroundColor: 'rgba(0,0,0,0)',
+            data: getAllDataFromASensor(id,type),
+            fill: false
+        };
+        chart.data.datasets.push(newDataset);
+        chart.update();
+        placementChart.set(id+type,placementChart.size)
+    } else {
+        console.log("Element a enlever : "+ (id+type))
+        for(var key in placementChart.keys())
+        {
+            console.log("key en étude  : " + key)
+            if(placementChart.get(key) > placementChart.get(id+type))
+            {
+                console.log("key décrémenté : " + key)
+                value = value - 1
+            }
+
+        }
+        chart.data.datasets.splice(placementChart.get(id+type),1);
+        placementChart.delete(id+type)
+        chart.update();
+    }
+    
 }
 
 function RefreshCapteur() {

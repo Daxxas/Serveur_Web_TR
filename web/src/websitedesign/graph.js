@@ -57,7 +57,7 @@ var dataTemp = {
     Densité2 : {
         name: "Densité2",
         key: 0,
-        data: [12,65,40,30,74,66],
+        data: [5,2],
         color : "rgb(0, 100, 100)"
     },
     Hauteur2 : {
@@ -89,6 +89,13 @@ function addValue(value){
     chart.data.datasets[0].data.push(value);
     chart.update();
 }
+function wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+        end = new Date().getTime();
+    }
+}
 const options = {
     clean: true, // retain session
     connectTimeout: 4000, // Timeout period
@@ -107,45 +114,46 @@ const options = {
 // alis Alipay applet connection
 const connectUrl = 'wss://broker.emqx.io:8084/mqtt'
 const client = mqtt.connect(connectUrl, options)
-function wait(ms){
-    var start = new Date().getTime();
-    var end = start;
-    while(end < start + ms) {
-        end = new Date().getTime();
-    }
-}
 
-/* client.on('reconnect', (error) => {
-    console.log('reconnecting:', error)
-})
 
-client.on('error', (error) => {
-    console.log('Connection failed:', error)
-})
-client.on('connect', function () {
+function pub(){
     client.subscribe('presence', function (err) {
         if (!err) {
-
+            var id = 2;
+            var type = "Temperature"
+            var data = Math.floor(Math.random() * 3);
+            var concat = '{"id":'+id+',"'+type+'":'+data+'}'
+            client.publish('presence',concat.toString())
         }
     })
-}) */
-
-function publish(){
-
-    var number = Math.floor((Math.random() * 100) + 1);
-
-    client.publish('presence', number.toString())
-    //console.log(number);
+    client.subscribe('presence', function (err) {
+        if (!err) {
+            var id = 1;
+            var type = "Humidity"
+            var data = Math.floor(Math.random() * 3);
+            var concat = '{"id":'+id+',"'+type+'":'+data+'}'
+            client.publish('presence',concat.toString())
+        }
+    })
+    client.subscribe('presence', function (err) {
+        if (!err) {
+            var id = 1;
+            var type = "Temperature"
+            var data = Math.floor(Math.random() * 3);
+            var concat = '{"id":'+id+',"'+type+'":'+data+'}'
+            client.publish('presence',concat.toString())
+        }
+    })
 }
+
+
 client.on('message', function (topic, message) {
     // message is Buffer
-    addValue(Number(message))
-    console.log(Number(message));
+    processing(message.toString());
     //client.end()
 })
 
 function display(graph){
-
     if (document.getElementById(graph).checked == true){
         var newDataset = {
             label: 'Dataset ' + graph,
@@ -173,16 +181,22 @@ function display(graph){
     }
 }
 
-
-
-
-
-
-
-
-
-
-
+var reg = new Register()
+function processing(requete)
+{
+    const obj = JSON.parse(requete)
+    var key
+    for(key in obj)
+    {
+        if(key == "id")
+        {
+            reg.addSensor(new Sensor(obj.id))
+        }else
+        {
+            reg.Sensors.get(obj.id).addValue(key,obj[key])
+        }
+    }
+}
 
 //Partie Capteur
 function Sensor(id) {
@@ -204,8 +218,16 @@ function Sensor(id) {
         {
             this.dataset.set(type, new Array())
             this.dataset.get(type).push([value,Date.now()])
+            AddTypeToCapteur(id,type)
         }else
         this.dataset.get(type).push([value,Date.now()])
+
+        if(placementChart.has(id+type))
+        {
+            chart.data.datasets[placementChart.get(id+type)].data.push(value);
+            chart.update()
+        }
+
 
     }
 }
@@ -217,14 +239,28 @@ function Register() {
         if(!(this.Sensors.has(Sensor_object.id)))
         {
             this.Sensors.set(Sensor_object.id,Sensor_object)
-            AddCapteur(1)
-            AddTypeToCapteur(1,"Temperature")
+            AddCapteur(Sensor_object.id)
         }
     }
 }
 
+function getAllDataFromASensor(id,type){
+    var toReturn = []
+    var length = reg.Sensors.get(id).dataset.get(type).length
+    for (let index = 0; index < length; index++) {
+        toReturn.push(reg.Sensors.get(id).dataset.get(type)[index][0])
+        
+    }
+    return toReturn
+}
 
-//Début du process
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 
-var reg = new Register()
-reg.addSensor(new Sensor(1))
+setInterval(" pub();chart.data.labels.push(new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes() + ':' + new Date(Date.now()).getSeconds());chart.update();", 5000);
