@@ -1,4 +1,4 @@
-var graph = document.getElementById('mainGraph');
+/*var graph = document.getElementById('mainGraph');
 
 var ctx = graph.getContext('2d');
 var myChart = new Chart(ctx, {
@@ -33,5 +33,142 @@ var myChart = new Chart(ctx, {
     }
 });
 //myChart.render()
+*/
 
+var dataTemp = {
+    Temperature : {
+        name: "Temperature",
+        key: 0,
+        data: [100,54,76,12,83,23],
+        color : "rgb(255, 0, 0)"
+    },
+    Densité : {
+        name: "Densité",
+        key: 0,
+        data: [32,25,10,100,34,76],
+        color : "rgb(0, 255, 0)"
+    },
+    Hauteur : {
+        name: "Hauteur",
+        key: 0,
+        data: [15,50,38,25,50,24],
+        color : "rgb(0, 0, 255)"
+    },
+    Densité2 : {
+        name: "Densité2",
+        key: 0,
+        data: [12,65,40,30,74,66],
+        color : "rgb(0, 100, 100)"
+    },
+    Hauteur2 : {
+        name: "Hauteur2",
+        key: 0,
+        data: [45,80,38,45,10,54],
+        color : "rgb(100, 0, 100)"
+    }
+}
+var keys = Object.keys(dataTemp);
 
+var ctx = document.getElementById('mainGraph').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['0'],
+        datasets: []
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+function addValue(value){
+    chart.data.labels.push(chart.data.datasets[0].data.length);
+    chart.data.datasets[0].data.push(value);
+    chart.update();
+}
+const options = {
+    clean: true, // retain session
+    connectTimeout: 4000, // Timeout period
+    // Authentication information
+    clientId: 'emqx_test',
+    username: 'emqx_test',
+    password: 'emqx_test',
+}
+
+// Connect string, and specify the connection method by the protocol
+// ws Unencrypted WebSocket connection
+// wss Encrypted WebSocket connection
+// mqtt Unencrypted TCP connection
+// mqtts Encrypted TCP connection
+// wxs WeChat applet connection
+// alis Alipay applet connection
+const connectUrl = 'wss://broker.emqx.io:8084/mqtt'
+const client = mqtt.connect(connectUrl, options)
+function wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+        end = new Date().getTime();
+    }
+}
+
+client.on('reconnect', (error) => {
+    console.log('reconnecting:', error)
+})
+
+client.on('error', (error) => {
+    console.log('Connection failed:', error)
+})
+client.on('connect', function () {
+    client.subscribe('presence', function (err) {
+        if (!err) {
+
+        }
+    })
+})
+
+function publish(){
+
+    var number = Math.floor((Math.random() * 100) + 1);
+
+    client.publish('presence', number.toString())
+    //console.log(number);
+}
+client.on('message', function (topic, message) {
+    // message is Buffer
+    addValue(Number(message))
+    console.log(Number(message));
+    //client.end()
+})
+
+function display(graph){
+
+    if (document.getElementById(graph).checked == true){
+        var newDataset = {
+            label: 'Dataset ' + graph,
+            borderColor: dataTemp[graph].color,
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            data: dataTemp[graph].data,
+            fill: false
+        };
+
+        chart.data.datasets.push(newDataset);
+        chart.update();
+        dataTemp[graph].key = chart.data.datasets.length - 1
+    } else {
+
+        chart.data.datasets.splice(dataTemp[graph].key,1);
+        chart.update();
+        for (var i = 0; i < keys.length - 1; i++){
+            console.log(dataTemp[keys[i]].key);
+        }
+        for (var i = 0; i < keys.length - 1; i++){
+            if(dataTemp[keys[i]].key > dataTemp[graph].key) {
+                dataTemp[keys[i]].key -= 1;
+            }
+        }
+    }
+}

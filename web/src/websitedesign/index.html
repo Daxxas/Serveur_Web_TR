@@ -91,41 +91,53 @@
     </div>
 
 
-<table class="table table-primary">
-    <thead>
-    <tr>
-        <th scope="col">
-            <div class="th-center">Moyenne</div>
-        </th>
-        <th scope="col">
-            <div class="th-center">Variance</div>
-        </th>
-        <th scope="col">
-            <div class="th-center">Ecart-Type</div>
-        </th>
-        <th scope="col">
-            <div class="th-center">Min</div>
-        </th>
-        <th scope="col">
-            <div class="th-center">Max</div>
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>0.00</td>
-        <td>0.00</td>
-        <td>0.00</td>
-        <td>0.00</td>
-        <td>0.00</td>
-    </tr>
+    <table class="table table-primary">
+        <thead>
+        <tr>
+            <th scope="col">
+                <div class="th-center">Moyenne</div>
+            </th>
+            <th scope="col">
+                <div class="th-center">Variance</div>
+            </th>
+            <th scope="col">
+                <div class="th-center">Ecart-Type</div>
+            </th>
+            <th scope="col">
+                <div class="th-center">Min</div>
+            </th>
+            <th scope="col">
+                <div class="th-center">Max</div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
+        </tr>
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
 
-<script src="graph.js"></script>
-<script src="controler.js"></script>
+    <button onclick="addValue()">test</button>
+    <button onclick="publish()">publish</button>
+
+    <form>
+        <input type="checkbox" onchange="display('Temperature')" id="Temperature" name=""><label>Temperature</label>
+        <input type="checkbox" onchange="display('Hauteur')" id="Hauteur" name=""><label>Hauteur</label>
+        <input type="checkbox" onchange="display('Densité')" id="Densité" name=""><label>Densité</label>
+        <input type="checkbox" onchange="display('Hauteur2')" id="Hauteur2" name=""><label>Hauteur2</label>
+        <input type="checkbox" onchange="display('Densité2')" id="Densité2" name=""><label>Densité2</label>
+    </form>
+
+
+    <script src="graph.js"></script>
+    <script src="controler.js"></script>
 
 </body>
 </html>
