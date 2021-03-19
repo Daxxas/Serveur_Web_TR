@@ -73,7 +73,6 @@ body {
     border-right: 0.1rem solid #1a6dca;
     padding-right: 5px;
     min-width: 130px;
-    margin-left: 10px;
 }
 
 .capteur-child {
@@ -111,7 +110,6 @@ table {
 /* width */
 .switchbuttons::-webkit-scrollbar {
     width: 10px;
-    height: 10px;
 }
 
 /* Track */
