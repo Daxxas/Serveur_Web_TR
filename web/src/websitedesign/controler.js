@@ -1,12 +1,3 @@
-let capteurCategory = document.getElementsByClassName("capteur-category")
-
-for(let i = 0; i < capteurCategory.length; i++) {
-    let headerdiv = capteurCategory[i].getElementsByClassName("capteur-header")[0]
-    let childs = capteurCategory[i].getElementsByClassName("capteur-child")
-    let capteurSwitch = headerdiv.getElementsByClassName("custom-control-input")[0]
-
-    capteurSwitch.addEventListener('change', function() {headerSwitch(childs, capteurSwitch)})
-}
 
 function headerSwitch(childs, parentSwitch) {
 
@@ -26,9 +17,9 @@ function headerSwitch(childs, parentSwitch) {
             childSwitch[0].removeAttribute("disabled")
             childSwitch[0].setAttribute("checked", "")
         }
-
     }
 }
+
 let switchbuttons = document.getElementsByClassName("switchbuttons")[0]
 
 // TODO : changer le nombre de bouton quand il n'y en aura plus par défaut
@@ -51,6 +42,7 @@ function AddCapteur() {
     switchheaderinput.type = "checkbox"
     switchheaderinput.className = "custom-control-input"
     switchheaderinput.setAttribute("checked", "")
+    switchheaderinput.checked = false
     switchheaderinput.id = "customSwitch" + buttoncount
     headerdiv.appendChild(switchheaderinput)
 
@@ -74,6 +66,7 @@ function AddCapteur() {
         switchchildinput.type = "checkbox"
         switchchildinput.className = "custom-control-input"
         switchchildinput.setAttribute("checked", "")
+        switchchildinput.checked = false;
         switchchildinput.id = "customSwitch" + buttoncount
         childdiv.appendChild(switchchildinput)
 
@@ -89,6 +82,7 @@ function AddCapteur() {
     }
     switchbuttons.appendChild(categorydiv)
 }
+
 
 AddCapteur("test", "teste", "teste", "teste", "teste", "teste")
 AddCapteur("testset")
@@ -125,3 +119,14 @@ AddCapteur()
 AddCapteur()
 AddCapteur()
 AddCapteur()
+
+let capteurCategory = document.getElementsByClassName("capteur-category")
+
+for(let i = 0; i < capteurCategory.length; i++) {
+    let headerdiv = capteurCategory[i].getElementsByClassName("capteur-header")[0]
+    let childs = capteurCategory[i].getElementsByClassName("capteur-child")
+    let capteurSwitch = headerdiv.getElementsByClassName("custom-control-input")[0]
+
+    capteurSwitch.addEventListener('change', function() {headerSwitch(childs, capteurSwitch)})
+    headerSwitch(childs, capteurSwitch)
+}
