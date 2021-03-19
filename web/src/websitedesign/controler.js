@@ -105,7 +105,8 @@ function AddTypeToCapteur(id, type) {
 }
 
 function CapteurContentSwitch(id, type) {
-    // Faire ce que tu veux avec ton id et type bbast
+    console.log("ID " + id)
+    console.log("Type " +type)
 }
 
 function RefreshCapteur() {
@@ -126,13 +127,6 @@ function RefreshCapteur() {
         headerSwitch(childs, capteurSwitch)
     }
 }
-
-AddCapteur("1")
-AddCapteur("2")
-AddCapteur("3")
-AddCapteur("4")
-AddTypeToCapteur("1", "test")
-
 
 
 

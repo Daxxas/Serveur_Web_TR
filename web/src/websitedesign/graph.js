@@ -217,6 +217,8 @@ function Register() {
         if(!(this.Sensors.has(Sensor_object.id)))
         {
             this.Sensors.set(Sensor_object.id,Sensor_object)
+            AddCapteur(1)
+            AddTypeToCapteur(1,"Temperature")
         }
     }
 }
