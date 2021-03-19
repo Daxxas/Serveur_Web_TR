@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Graphique temps réel</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.2.6/mqtt.min.js" integrity="sha512-DD/bXhp28PWFubyhBKR7vt5FUMRCbEJ8KtC4Oq/MTWniMUytsPM5pFDaUTaHDRd7zC8cHpKvv6FaUI2OP/czlw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Graphique temps réel</a>
+
+    <div id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Graphique différé</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div class="flex-container">
+        <div class="flex-child1">
+            <div class="chart">
+                <canvas id="mainGraph"></canvas>
+            </div>
+        </div>
+        <div class="flex-child2">
+            <div class="switchbuttons">
+                <!-- Rajouter des boutons ici si besoin -->
+
+
+            </div>
+
+            <div class="exportbuttons">
+                <button class="btn btn-primary export-btn">Export CSV</button>
+                <button class="btn btn-primary export-btn">Export PDF</button>
+                <button class="btn btn-primary export-btn">Export Image</button>
+            </div>
+
+        </div>
+    </div>
+
+
+<table class="table table-primary">
+    <thead>
+    <tr>
+        <th scope="col">
+            <div class="th-center">Moyenne</div>
+        </th>
+        <th scope="col">
+            <div class="th-center">Variance</div>
+        </th>
+        <th scope="col">
+            <div class="th-center">Ecart-Type</div>
+        </th>
+        <th scope="col">
+            <div class="th-center">Min</div>
+        </th>
+        <th scope="col">
+            <div class="th-center">Max</div>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>0.00</td>
+        <td>0.00</td>
+        <td>0.00</td>
+        <td>0.00</td>
+        <td>0.00</td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+<script src="graph - Don.js"></script>
+
+</body>
+</html>
