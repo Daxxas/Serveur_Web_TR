@@ -101,12 +101,31 @@ function AddTypeToCapteur(id, type) {
 
     categorydiv.appendChild(childdiv)
 
+    RefreshCapteur()
 }
 
 function CapteurContentSwitch(id, type) {
     // Faire ce que tu veux avec ton id et type bbast
 }
 
+function RefreshCapteur() {
+
+    let all = document.querySelectorAll(".capteur-header");
+    for (let i = 0; i < all.length; i++) {
+        all[i].style.minWidth = String(capteurNameBiggestWidth) + "px"
+    }
+
+    let capteurCategory = document.getElementsByClassName("capteur-category")
+
+    for(let i = 0; i < capteurCategory.length; i++) {
+        let headerdiv = capteurCategory[i].getElementsByClassName("capteur-header")[0]
+        let childs = capteurCategory[i].getElementsByClassName("capteur-child")
+        let capteurSwitch = headerdiv.getElementsByClassName("custom-control-input")[0]
+
+        capteurSwitch.addEventListener('change', function() {headerSwitch(childs, capteurSwitch)})
+        headerSwitch(childs, capteurSwitch)
+    }
+}
 
 AddCapteur("1")
 AddCapteur("2")
@@ -114,18 +133,6 @@ AddCapteur("3")
 AddCapteur("4")
 AddTypeToCapteur("1", "test")
 
-let all = document.querySelectorAll(".capteur-header");
-for (let i = 0; i < all.length; i++) {
-    all[i].style.minWidth = String(capteurNameBiggestWidth) + "px"
-}
 
-let capteurCategory = document.getElementsByClassName("capteur-category")
 
-for(let i = 0; i < capteurCategory.length; i++) {
-    let headerdiv = capteurCategory[i].getElementsByClassName("capteur-header")[0]
-    let childs = capteurCategory[i].getElementsByClassName("capteur-child")
-    let capteurSwitch = headerdiv.getElementsByClassName("custom-control-input")[0]
 
-    capteurSwitch.addEventListener('change', function() {headerSwitch(childs, capteurSwitch)})
-    headerSwitch(childs, capteurSwitch)
-}
