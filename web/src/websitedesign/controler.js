@@ -22,17 +22,25 @@ let buttoncount = 10; // nombre de bouton présent de base
 
 let capteurNameBiggestWidth = 0;
 
-function AddCapteur(nom) {
+function AddCapteur(id) {
+
+    if(document.getElementById(id) != null) {
+        console.error("Attention : On essai d'ajouter un capteur avec l'id " + id + " qui existe déjà : " + document.getElementById(id))
+        return
+    }
+
     let currentCapteurIndex = document.getElementsByClassName("capteur-category").length
 
     currentCapteurIndex++
     let categorydiv = document.createElement("div")
     categorydiv.className = "capteur-category"
+    categorydiv.id = id
 
     switchbuttons.appendChild(categorydiv)
 
     let headerdiv = document.createElement("div")
     headerdiv.className = "custom-control custom-switch capteur-header"
+
     //ajouter ici l'attribute custom qui est dans l'exemple, si je l'ai pas mis c'est que j'ai l'impression qu'il sert à rien
 
     let switchheaderinput = document.createElement("input")
@@ -47,8 +55,8 @@ function AddCapteur(nom) {
     let switchheaderlabel = document.createElement("label")
     switchheaderlabel.className = "custom-control-label"
     switchheaderlabel.setAttribute("for", "customSwitch"+buttoncount)
-    if(nom != null) {
-        switchheaderlabel.textContent = "Capteur " + nom
+    if(id != null) {
+        switchheaderlabel.textContent = "Capteur " + id
     }
     else {
         switchheaderlabel.textContent = "Capteur"
@@ -59,32 +67,6 @@ function AddCapteur(nom) {
 
     categorydiv.appendChild(headerdiv)
 
-
-
-    for(let i = 1; i < arguments.length; i++) {
-        let childdiv = document.createElement("div")
-        childdiv.className = "custom-control custom-switch capteur-child"
-
-        let switchchildinput = document.createElement("input")
-        switchchildinput.type = "checkbox"
-        switchchildinput.className = "custom-control-input"
-        switchchildinput.setAttribute("checked", "")
-        switchchildinput.checked = false;
-        switchchildinput.id = "customSwitch" + buttoncount
-        switchchildinput.addEventListener("change", function() {CapteurContentSwitch(nom, arguments[i])})
-        childdiv.appendChild(switchchildinput)
-
-
-        let switchchildlabel = document.createElement("label")
-        switchchildlabel.className = "custom-control-label"
-        switchchildlabel.setAttribute("for", "customSwitch"+buttoncount)
-        switchchildlabel.textContent = arguments[i]
-        buttoncount++
-        childdiv.appendChild(switchchildlabel)
-
-        categorydiv.appendChild(childdiv)
-    }
-
     if(capteurNameBiggestWidth < headerdiv.offsetWidth) {
         capteurNameBiggestWidth = headerdiv.offsetWidth
         document.documentElement.style.setProperty("minwidtheheader", capteurNameBiggestWidth)
@@ -93,15 +75,44 @@ function AddCapteur(nom) {
     switchbuttons.appendChild(categorydiv)
 }
 
+function AddTypeToCapteur(id, type) {
+
+    let categorydiv = document.getElementById(id)
+
+    let childdiv = document.createElement("div")
+    childdiv.className = "custom-control custom-switch capteur-child"
+
+    let switchchildinput = document.createElement("input")
+    switchchildinput.type = "checkbox"
+    switchchildinput.className = "custom-control-input"
+    switchchildinput.setAttribute("checked", "")
+    switchchildinput.checked = false;
+    switchchildinput.id = "customSwitch" + buttoncount
+    switchchildinput.addEventListener("change", function() {CapteurContentSwitch(id, type)})
+    childdiv.appendChild(switchchildinput)
+
+
+    let switchchildlabel = document.createElement("label")
+    switchchildlabel.className = "custom-control-label"
+    switchchildlabel.setAttribute("for", "customSwitch"+buttoncount)
+    switchchildlabel.textContent = type
+    buttoncount++
+    childdiv.appendChild(switchchildlabel)
+
+    categorydiv.appendChild(childdiv)
+
+}
+
 function CapteurContentSwitch(id, type) {
     // Faire ce que tu veux avec ton id et type bbast
 }
 
 
-AddCapteur("1", "truc1", "truc2")
-AddCapteur("2", "truc1", "truc2")
-AddCapteur("3", "truc1", "truc2")
-AddCapteur("4", "truc1", "truc2")
+AddCapteur("1")
+AddCapteur("2")
+AddCapteur("3")
+AddCapteur("4")
+AddTypeToCapteur("1", "test")
 
 let all = document.querySelectorAll(".capteur-header");
 for (let i = 0; i < all.length; i++) {
