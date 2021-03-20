@@ -118,16 +118,7 @@ function CapteurContentSwitch(id, type) {
         placementChart.set(id+type,placementChart.size)
     } else {
         console.log("Element a enlever : "+ (id+type))
-        for(var key in placementChart.keys())
-        {
-            console.log("key en étude  : " + key)
-            if(placementChart.get(key) > placementChart.get(id+type))
-            {
-                console.log("key décrémenté : " + key)
-                value = value - 1
-            }
-
-        }
+        //Décrémenter tout les autrres au dessus dans les nombres
         chart.data.datasets.splice(placementChart.get(id+type),1);
         placementChart.delete(id+type)
         chart.update();
