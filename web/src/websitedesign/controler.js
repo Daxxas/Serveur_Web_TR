@@ -7,6 +7,7 @@ function headerSwitch(childs, parentSwitch) {
             childSwitch[0].setAttribute("disabled", "")
             childSwitch[0].removeAttribute("checked")
             childSwitch[0].checked = false;
+            childSwitch[0].dispatchEvent(new Event('change'));
         }
         else {
             childSwitch[0].removeAttribute("disabled")
@@ -88,9 +89,10 @@ function AddTypeToCapteur(id, type) {
     switchchildinput.setAttribute("checked", "")
     switchchildinput.checked = false;
     switchchildinput.id = "customSwitch" + buttoncount
-    switchchildinput.addEventListener("change", function() {CapteurContentSwitch(id, type,switchchildinput)})
+    switchchildinput.addEventListener("change", function() {CapteurContentSwitch(id, type)})
     childdiv.appendChild(switchchildinput)
-
+    childdiv.addEventListener("mouseenter", function(){hoverSwitch(id,childdiv)})
+    childdiv.addEventListener("mouseleave", function(){clearMathInfo(childdiv)})
 
     let switchchildlabel = document.createElement("label")
     switchchildlabel.className = "custom-control-label"
@@ -104,6 +106,34 @@ function AddTypeToCapteur(id, type) {
     RefreshCapteur()
 }
 var placementChart = new Map()
+
+
+function hoverSwitch(id,object)
+{
+    object.style.fontStyle = 'oblique'
+    var type = object.children[1].innerHTML
+    var values = getAllDataFromASensor(id,type)
+    document.getElementById('label_max').innerText = max(values)
+    document.getElementById('label_min').innerText = min(values)
+    document.getElementById('label_ecty').innerText = ecart_type(values)
+    document.getElementById('label_var').innerText = variance(values)
+    document.getElementById('label_moy').innerText = moy(values)
+    document.getElementById('label_quantity').innerText = values.length   
+}
+
+function clearMathInfo(object)
+{
+    object.style.fontStyle = 'normal'
+    document.getElementById('label_max').innerText = 0
+    document.getElementById('label_min').innerText = 0
+    document.getElementById('label_ecty').innerText = 0
+    document.getElementById('label_var').innerText = 0
+    document.getElementById('label_moy').innerText = 0
+    document.getElementById('label_quantity').innerText = 0
+}
+
+
+
 function CapteurContentSwitch(id, type) {
     if (!placementChart.has(id+type)){
         var newDataset = {
@@ -130,19 +160,9 @@ function CapteurContentSwitch(id, type) {
             }
         }
     }
-
-    /*
-    Map:
-        "key": valeur
-        "key": valeur
-        "1Humidity" : 0
-
-
-
-
-    */
-    
 }
+
+
 
 function RefreshCapteur() {
 
@@ -159,7 +179,22 @@ function RefreshCapteur() {
         let capteurSwitch = headerdiv.getElementsByClassName("custom-control-input")[0]
 
         capteurSwitch.addEventListener('change', function() {headerSwitch(childs, capteurSwitch)})
-        headerSwitch(childs, capteurSwitch)
+        //headerSwitch(childs, capteurSwitch)
+
+        for(let i = 0; i < childs.length; i++) {
+
+            let childSwitch = childs[i].getElementsByClassName("custom-control-input")
+    
+            if(!capteurSwitch.checked) {
+                childSwitch[0].setAttribute("disabled", "")
+                childSwitch[0].removeAttribute("checked")
+                childSwitch[0].checked = false;
+            }
+            else {
+                childSwitch[0].removeAttribute("disabled")
+                childSwitch[0].setAttribute("checked", "")
+            }
+        }
     }
 }
 

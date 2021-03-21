@@ -82,11 +82,20 @@ var chart = new Chart(ctx, {
 
     // Configuration options go here
     options: {
-        'onClick' : function (evt, item) {
-        console.log("Update VARIANCE MIN MAX ECT")
+
     }
-}
+
 });
+
+
+
+//TEST
+
+
+
+
+
+//
 
 function addValue(value){
     chart.data.labels.push(chart.data.datasets[0].data.length);
@@ -202,6 +211,8 @@ function processing(requete)
     }
 }
 
+
+
 //Partie Capteur
 function Sensor(id) {
     this.id = id;
@@ -267,6 +278,7 @@ function getRandomColor() {
     return color;
   }
 
-setInterval(" pub()", 5000);
+setInterval(" pub()", 2000);
+setInterval("chart.data.labels.push(new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes() + ':' + new Date(Date.now()).getSeconds());chart.update(); ", 2000);
 
-setInterval("chart.data.labels.push(new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes() + ':' + new Date(Date.now()).getSeconds());chart.update();", 2000);
+chart.data.datasets[0]
