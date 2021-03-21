@@ -118,11 +118,29 @@ function CapteurContentSwitch(id, type) {
         placementChart.set(id+type,placementChart.size)
     } else {
         console.log("Element a enlever : "+ (id+type))
-        //Décrémenter tout les autrres au dessus dans les nombres
+        var index_depart = placementChart.get(id+type)
+        console.log("index de départ : " + index_depart)
         chart.data.datasets.splice(placementChart.get(id+type),1);
         placementChart.delete(id+type)
         chart.update();
+        for (let [key, value] of placementChart) {
+            if(value > index_depart)
+            {
+                placementChart.set(key,value-1)
+            }
+        }
     }
+
+    /*
+    Map:
+        "key": valeur
+        "key": valeur
+        "1Humidity" : 0
+
+
+
+
+    */
     
 }
 
