@@ -278,7 +278,7 @@ function getRandomColor() {
     return color;
   }
 
-setInterval(" pub()", 2000);
+//setInterval(" pub()", 2000);
 setInterval("chart.data.labels.push(new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes() + ':' + new Date(Date.now()).getSeconds());chart.update(); ", 2000);
 
 chart.data.datasets[0]
