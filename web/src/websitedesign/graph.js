@@ -128,15 +128,14 @@ const options = {
 // wxs WeChat applet connection
 // alis Alipay applet connection
 const connectUrl = 'wss://broker.emqx.io:8084/mqtt' */
-const options = {
-    clean: true, // retain session
-    connectTimeout: 4000, // Timeout period
-    // Authentication information
-}
 
-var hostUrl='192.168.44.11';
-var portUrl=1884;
-const client = mqtt.connect([{host: hostUrl, port: portUrl}], options)
+var host = "mqtt://192.168.44.11";
+var options = {
+    port: 1884,
+    clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+};
+
+const client = mqtt.connect(host,options)
 
 function pub(){
     client.subscribe('presence', function (err) {
