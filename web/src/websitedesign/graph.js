@@ -109,6 +109,8 @@ function wait(ms){
         end = new Date().getTime();
     }
 }
+
+/*
 const options = {
     clean: true, // retain session
     connectTimeout: 4000, // Timeout period
@@ -125,9 +127,16 @@ const options = {
 // mqtts Encrypted TCP connection
 // wxs WeChat applet connection
 // alis Alipay applet connection
-const connectUrl = 'wss://broker.emqx.io:8084/mqtt'
-const client = mqtt.connect(connectUrl, options)
+const connectUrl = 'wss://broker.emqx.io:8084/mqtt' */
+const options = {
+    clean: true, // retain session
+    connectTimeout: 4000, // Timeout period
+    // Authentication information
+}
 
+var hostUrl='192.168.44.11';
+var portUrl=1884;
+const client = mqtt.connect([{host: hostUrl, port: portUrl}], options)
 
 function pub(){
     client.subscribe('presence', function (err) {
