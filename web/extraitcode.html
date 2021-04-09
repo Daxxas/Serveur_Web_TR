@@ -5,11 +5,11 @@
     <body>
         <script>
             valeurs = [152,158,164,168,168,169,176]
-            document.write("\nMaximum : ", max(valeurs))
-            document.write("\nMinimum : ", min(valeurs))
-            document.write("\nMoyenne : ", moy(valeurs))
-            document.write("\nVariance : ", variance(valeurs))
-            document.write("\nEcart-type : ", ecart_type(valeurs))
+            //document.write("\nMaximum : ", max(valeurs))
+            //document.write("\nMinimum : ", min(valeurs))
+            //document.write("\nMoyenne : ", moy(valeurs))
+            //document.write("\nVariance : ", variance(valeurs))
+            //document.write("\nEcart-type : ", ecart_type(valeurs))
 
 
             function max(valeurs)
@@ -47,6 +47,197 @@
                 return Math.sqrt(variance(valeurs))
             }
 
+            /*
+                Register
+                    Sensor1
+                        id
+                        dataset
+                            Temperature
+                                15 - 19272616282
+                                30 - 19272819282
+                                ...
+                            Humidity
+                                20 - 19999999999
+                                21 - 19999999999
+                                30 - 19999999999
+                                ...
+                    Sensor2
+                        id
+                        dataset
+                            Digital_Output
+                                0  - 19999999999
+                                ...
+                            ...
+            */
+
+            //Declaration
+            function Sensor(id) {
+                this.id = id;
+                this.dataset = new Map();
+                this.addValue = function(type,value){
+                    if(typeof(value) == "object")
+                    {
+                        var number = 0
+                        value.forEach(data => {
+                            number = number+1
+                            if(!(this.dataset.has(type+number)))
+                                {
+                                    this.dataset.set(type+number, new Array())
+                                }
+                            this.dataset.get(type+number).push([data,Date.now()])
+                        });
+                    }else if(!(this.dataset.has(type)))
+                    {
+                        this.dataset.set(type, new Array())
+                        this.dataset.get(type).push([value,Date.now()])
+                    }else
+                    this.dataset.get(type).push([value,Date.now()])
+
+                }
+            }
+            function Register() {
+                this.Sensors = new Map()
+                this.addSensor = function(Sensor_object)
+                {
+                    if(!(this.Sensors.has(Sensor_object.id)))
+                    {
+                        this.Sensors.set(Sensor_object.id,Sensor_object)
+                    }
+                }
+            }
+            
+            //Create objects
+            var Register = new Register()
+            var mySensor = new Sensor(15)
+            var secondSensor = new Sensor(1)
+
+
+            function display() {
+                var el = document.getElementById('Register_display');
+                if(el != null)
+                {
+                    el.remove()
+                }
+
+
+
+                document.write("<div id='Register_display'>")
+                document.writeln("<p>Register</p>")
+                Register.Sensors.forEach(Sensor => {
+                document.write("<p class='Sensor'>&emsp;Sensor numéro : ", Sensor.id,"</p>")
+                var cles = Array.from(Sensor.dataset.keys())
+                cles.forEach(cle => {
+                    document.write("<p id='cle'>&emsp;&emsp;",cle,"</p>")
+                        Sensor.dataset.get(cle).forEach(value => {
+                            document.write("<p id='value'>&emsp;&emsp;&emsp;"+value[0]+" at "+ value[1] +"</p>")
+                        });
+                });
+            });
+                document.write("</div>")
+            }
+
+            function add()
+            {
+                var id = Math.floor(Math.random() *20)
+                var value = Math.floor(Math.random()*55)
+                Register.addSensor(new Sensor(id))
+                var val = Math.random()
+                if(val <= 0.2)
+                {
+                    Register.Sensors.get(id).addValue('Temperature',value)
+                }else if(val <= 0.3)
+                {
+                    Register.Sensors.get(id).addValue('Humidity',value)
+                }else if(val <= 0.5)
+                {
+                    Register.Sensors.get(id).addValue('Digital_Output',Math.floor(Math.random()))
+                }else if(val <= 0.7)
+                {
+                    Register.Sensors.get(id).addValue('Temperature',new Array(Math.floor(Math.random()*55),Math.floor(Math.random()*55),Math.floor(Math.random()*55),Math.floor(Math.random()*55)))
+                }
+            }
+
+            for (let _ = 0; _ < 100; _++) {
+                add()
+            }
+            var _Sensor = new Sensor(0)
+            Register.addSensor(_Sensor)
+            Register.Sensors.get(0).addValue('Humidity',[15,61,54,48,4])
+            display()
+            console.log("go")
+
+            function getAllDataFromASensor(id,type){
+                var toReturn = []
+
+                var length = Register.Sensors.get(id).dataset.get(type).length
+                for (let index = 0; index < length; index++) {
+                    toReturn.push(Register.Sensors.get(id).dataset.get(type))
+                    
+                }
+                return toReturn
+            }
+
+
+
+                    
+                    
+                    function download_csv() {
+                        var data = []
+                        Register.Sensors.forEach(Sensor => {
+                            var cles = Array.from(Sensor.dataset.keys())
+                            cles.forEach(cle => {
+                                data.push(new Array)
+                                data[data.length-1].push(Sensor.id)
+                                data[data.length-1].push(cle)
+                                var values = ""
+                                    Sensor.dataset.get(cle).forEach(value => {
+                                        values += (value[0]+"-"+value[1]) + ";"
+                                    });
+                                values = values.slice(0,-1)
+                                data[data.length-1].push(values)
+                        });
+                    });
+
+                        var csv = 'ID,TYPE,VALUE\n';
+                        data.sort(function(a, b){return a[0] - b[0]});
+                        data.forEach(function(row) {
+                                csv += row.join(',');
+                                csv += "\n";
+                        });
+                    
+                        console.log(csv);
+                        var hiddenElement = document.createElement('a');
+                        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+                        hiddenElement.target = '_blank';
+                        hiddenElement.download = 'data.csv';
+                        hiddenElement.click();
+                    }
+
+
+
+                    //            <a href="#" id="btn_download_image" download="chart.pdf" target="_blank">Export image</a>
+                    document.getElementById('btn_download_image').addEventListener("click",function()
+                    {
+                        var canvas = document.getElementById('mainGraph')
+                        var dataURL = canvas.toDataURL('image/png');
+                        console.log(dataURL);
+
+                        this.href = dataURL
+                    });
+
+                    //<a href="#" id="btn_download_pdf" download="chart.pdf" target="_blank">Export pdf</a>
+                    //<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"><//script>
+                    document.getElementById('btn_download_pdf').addEventListener("click",function(){
+                    //create image from dumy canvas
+                        var canvas = document.getElementById('mainGraph')
+                        //creates PDF from img
+                        var doc = new jsPDF('landscape');
+                        doc.setFontSize(20);
+                        doc.addImage(canvas, 'JPEG', 10, 10, 280, 150 );
+                        doc.save('new-canvas.pdf');
+                    });
+
         </script>
+        <button onclick="download_csv()">Download CSV</button> 
     </body>
 </html>
