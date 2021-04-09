@@ -45,8 +45,17 @@ var dataTemp = {
             },
 
             // Configuration options go here
-            options: {}
+            options: {
+                // This chart will not respond to mousemove, etc
+                events: ['click']
+            }
         });
+
+document.getElementById("mainGraph").onclick = function(evt){
+    var activePoints = chart.getElementsAtEvent(evt);
+    // use _datasetIndex and _index from each element of the activePoints array
+    console.log(activePoints)
+};
 
 function display(graph){
 
