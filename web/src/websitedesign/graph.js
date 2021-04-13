@@ -136,7 +136,6 @@ var port = 1884;
 
 function onConnect(){
     console.log("Connected");
-    document.write("Connected !")
     message = new Paho.MQTT.message("Hello");
     message.destinationName = "data";
     mqtt.send(message);
@@ -149,7 +148,6 @@ function MQTTconnect(){
         timeout : 3,
         onSuccess: onConnect,
     };
-    document.write("Connecting to " + host);
     mqtt.connect(options);
 }
 
