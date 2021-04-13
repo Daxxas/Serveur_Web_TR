@@ -129,15 +129,9 @@ const options = {
 // alis Alipay applet connection
 const connectUrl = 'wss://broker.emqx.io:8084/mqtt' */
 
-var host = "mqtt://192.168.44.11";
-var options = {
-    port: 1884,
-    clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
-};
 
-const client = mqtt.connect(host,options)
 
-function pub(){
+/* function pub(){
     client.subscribe('presence', function (err) {
         if (!err) {
             var id = 2;
@@ -165,14 +159,8 @@ function pub(){
             client.publish('presence',concat.toString())
         }
     })
-}
+} */
 
-
-client.on('message', function (topic, message) {
-    // message is Buffer
-    processing(message.toString());
-    //client.end()
-})
 
 function display(graph){
     if (document.getElementById(graph).checked == true){
