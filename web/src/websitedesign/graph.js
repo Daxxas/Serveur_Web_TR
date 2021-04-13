@@ -131,8 +131,8 @@ const connectUrl = 'wss://broker.emqx.io:8084/mqtt' */
 
 var mqtt;
 var reconnectTimeout = 2000;
-var host = "broker.emqx.io";
-var port = 8083;
+var host = "192.168.44.13";
+var port = 1884;
 
 function onConnect(){
     console.log("Connected");
