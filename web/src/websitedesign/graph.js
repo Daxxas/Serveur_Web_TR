@@ -129,7 +129,29 @@ const options = {
 // alis Alipay applet connection
 const connectUrl = 'wss://broker.emqx.io:8084/mqtt' */
 
+var mqtt;
+var reconnectTimeout = 2000;
+var host = "broker.emqx.io";
+var port = 8083;
 
+function onConnect(){
+    console.log("Connected");
+    document.write("Connected !")
+    message = new Paho.MQTT.message("Hello");
+    message.destinationName = "data";
+    mqtt.send(message);
+}
+
+function MQTTconnect(){
+    console.log("Connecting to "+host+":"+port);
+    mqtt = new Paho.Client(host,port,"clientjs");
+    var options = {
+        timeout : 3,
+        onSuccess: onConnect,
+    };
+    document.write("Connecting to " + host);
+    mqtt.connect(options);
+}
 
 /* function pub(){
     client.subscribe('presence', function (err) {
@@ -275,6 +297,7 @@ function getRandomColor() {
   }
 
 //setInterval(" pub()", 2000);
+MQTTconnect();
 setInterval("chart.data.labels.push(new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes() + ':' + new Date(Date.now()).getSeconds());chart.update(); ", 2000);
 
 chart.data.datasets[0]
