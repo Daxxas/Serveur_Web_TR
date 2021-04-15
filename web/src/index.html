@@ -27,6 +27,54 @@
             <div class="chart">
                 <canvas id="mainGraph"></canvas>
             </div>
+
+            <div class="chart-stats">
+                <div class="stat-container">
+                    <div class="card mb-3 stat-card">
+                        <div class="card-header bg-primary text-white">Moyenne</div>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">24</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-container">
+                    <div class="card mb-3 stat-card">
+                        <div class="card-header bg-primary text-white">Variance</div>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">1.2</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-container">
+                    <div class="card mb-3 stat-card">
+                        <div class="card-header bg-primary text-white">Maximum</div>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">100</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-container">
+                    <div class="card mb-3 stat-card">
+                        <div class="card-header bg-primary text-white">Minimum</div>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">0</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-container">
+                    <div class="card mb-3 stat-card">
+                        <div class="card-header bg-primary text-white">Nombre de valeur</div>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">123</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
         <div class="flex-child2">
             <div class="switchbuttons">
@@ -37,51 +85,13 @@
             </div>
 
             <div class="exportbuttons">
-                <button id="btn_exportcsv" class="btn btn-primary export-btn">Export CSV</button>
-                <button id="btn_exportpdf" class="btn btn-primary export-btn">Export PDF</button>
-                <button id="btn_exportimage" class="btn btn-primary export-btn">Export Image</button>
+                <button id="btn_exportcsv" class="btn btn-primary bg-success border-success export-btn">Export CSV</button>
+                <button id="btn_exportpdf" class="btn btn-primary bg-success  border-success export-btn">Export PDF</button>
+                <button id="btn_exportimage" class="btn btn-primary bg-success border-success export-btn">Export Image</button>
             </div>
 
         </div>
     </div>
-
-
-    <table class="table table-primary">
-        <thead>
-        <tr>
-            <th scope="col">
-                <div class="th-center">Moyenne</div>
-            </th>
-            <th scope="col">
-                <div class="th-center">Variance</div>
-            </th>
-            <th scope="col">
-                <div class="th-center">Ecart-Type</div>
-            </th>
-            <th scope="col">
-                <div class="th-center">Min</div>
-            </th>
-            <th scope="col">
-                <div class="th-center">Max</div>
-            </th>
-            <th scope="col">
-                <div class="th-center">Nombre de valeurs</div>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td id="label_moy">0</td>
-            <td id="label_var">0</td>
-            <td id="label_ecty">0</td>
-            <td id="label_min">0</td>
-            <td id="label_max">0</td>
-            <td id="label_quantity">0</td>
-        </tr>
-
-        </tbody>
-    </table>
-
 
 
 

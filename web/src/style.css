@@ -30,8 +30,9 @@ li a:hover {
 */
 
 body {
-    height: 100vh;
+    height: 100%;
     padding: 0;
+    margin: 0;
 }
 
 .graph-button-option {
@@ -42,26 +43,48 @@ body {
     display: flex;
     flex-wrap: nowrap;
     /*Si la taille du tableau change, changer la valeur qui soustrait ici*/
-    height: calc(100% - 159px);
+    height: calc(100vh - 65px);
     min-height: 450px;
+    padding: 0;
 }
 
 
 .chart {
-    overflow: hidden;
-    height: 100%;
+    height: calc(100% - 154px);
 }
+
+.chart-stats {
+    margin-top: 10px;
+    flex-wrap: nowrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow: auto;
+}
+
+.stat-container {
+    min-width: 155px;
+    margin-right: 20px;
+}
+
 .flex-child1 {
     flex: 1;
     position: relative;
-    width: auto;
+    /*width: auto;*/
     height: 100%;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 2px;
+
 }
 
 .flex-child2 {
     /* Si on veut des boutons + larges ou plus d'espace pour les boutons, changer ici */
-    width: 500px;
+    width: 25%;
+    min-width: 200px;
+    height: 100%;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -87,6 +110,7 @@ body {
 
 .switchbuttons {
     overflow: auto;
+    height: 100%;
 }
 
 .exportbuttons {
@@ -109,22 +133,22 @@ table {
 }
 
 /* width */
-.switchbuttons::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 10px;
     height: 10px;
 }
 
 /* Track */
-.switchbuttons::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
 
 /* Handle */
-.switchbuttons::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: #1a6dca;
 }
 
 /* Handle on hover */
-.switchbuttons::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background: #0d2a4a;
 }

@@ -76,6 +76,13 @@ function AddCapteur(id) {
     switchbuttons.appendChild(categorydiv)
 }
 
+AddCapteur("test");
+AddTypeToCapteur("test", "truc");
+AddTypeToCapteur("test", "truc");
+AddTypeToCapteur("test", "truc");
+AddTypeToCapteur("test", "truc");
+AddTypeToCapteur("test", "truc");
+
 function AddTypeToCapteur(id, type) {
 
     let categorydiv = document.getElementById(id)
