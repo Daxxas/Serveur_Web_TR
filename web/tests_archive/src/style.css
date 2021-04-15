@@ -1,0 +1,130 @@
+/*
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+
+    position:fixed;
+    top:0;
+    left:0;
+    width: 100%;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+*/
+
+body {
+    height: 100vh;
+    padding: 0;
+}
+
+.graph-button-option {
+    margin-bottom: 10px;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    /*Si la taille du tableau change, changer la valeur qui soustrait ici*/
+    height: calc(100% - 159px);
+    min-height: 450px;
+}
+
+
+.chart {
+    overflow: hidden;
+    height: 100%;
+}
+.flex-child1 {
+    flex: 1;
+    position: relative;
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+}
+
+.flex-child2 {
+    /* Si on veut des boutons + larges ou plus d'espace pour les boutons, changer ici */
+    width: 500px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.capteur-header {
+    font-weight: bold;
+    border-right: 0.1rem solid #1a6dca;
+    padding-right: 5px;
+    /*min-width: 150px;*/
+    margin-left: 10px;
+}
+
+.capteur-child {
+    margin-left: 1em;
+}
+
+.capteur-category {
+    display: flex;
+    flex-direction: row;
+}
+
+.switchbuttons {
+    overflow: auto;
+}
+
+.exportbuttons {
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.export-btn {
+    margin: 5px 20px 5px 20px;
+}
+
+td, .th-center {
+    text-align: center;
+    font-size: 18px;
+}
+
+table {
+    table-layout: fixed;
+}
+
+/* width */
+.switchbuttons::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Track */
+.switchbuttons::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.switchbuttons::-webkit-scrollbar-thumb {
+    background: #1a6dca;
+}
+
+/* Handle on hover */
+.switchbuttons::-webkit-scrollbar-thumb:hover {
+    background: #0d2a4a;
+}
