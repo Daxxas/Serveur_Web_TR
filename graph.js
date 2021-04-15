@@ -198,10 +198,13 @@ function display(graph){
 var reg = new Register()
 function processing(requete)
 {
+    console.log("Start")
     const obj = JSON.parse(requete)
+    console.log("obj : " + obj);
     var key
     for(key in obj)
     {
+        console.log("key : " + key);
         if(key == "id")
         {
             reg.addSensor(new Sensor(obj.id))
@@ -210,6 +213,7 @@ function processing(requete)
             reg.Sensors.get(obj.id).addValue(key,obj[key])
         }
     }
+    console.log("End")
 }
 
 
