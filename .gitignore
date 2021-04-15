@@ -505,3 +505,4 @@ MigrationBackup/
 .ionide/
 
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains,sublimetext,visualstudio,visualstudiocode
+web/src/websitedesign/.idea/workspace.xml

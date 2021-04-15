@@ -2,29 +2,103 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.2.6/mqtt.min.js" integrity="sha512-DD/bXhp28PWFubyhBKR7vt5FUMRCbEJ8KtC4Oq/MTWniMUytsPM5pFDaUTaHDRd7zC8cHpKvv6FaUI2OP/czlw==" crossorigin="anonymous"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
-    
+    <title>Graphique temps réel</title>
+    <script src="Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+
 </head>
-<body onload="animateMydiv()">
-    <button onclick="addValue()">test</button>
-    <button onclick="publish()">publish</button>
-    <div id="myDiv"><canvas id="mainGraph">
-    </canvas></div>
-    <script type="text/javascript" src="chartfile.js"></script>
-    <script type="text/javascript" src="mqtt.js"></script>
-    <script type="text/javascript" src="function.js"></script>
-    <form>
+<body>
+    <nav class="navbar navbar-expand navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Graphique temps réel</a>
+
+    <div id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Graphique différé</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div class="flex-container">
+        <div class="flex-child1">
+            <div class="chart">
+                <canvas id="mainGraph"></canvas>
+            </div>
+        </div>
+        <div class="flex-child2">
+            <div class="switchbuttons">
+                <!-- Rajouter des boutons ici si besoin -->
+
+                <!-- Fin des catégories mis à la main ici -->
+
+            </div>
+
+            <div class="exportbuttons">
+                <button id="btn_exportcsv" class="btn btn-primary export-btn">Export CSV</button>
+                <button id="btn_exportpdf" class="btn btn-primary export-btn">Export PDF</button>
+                <button id="btn_exportimage" class="btn btn-primary export-btn">Export Image</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <table class="table table-primary">
+        <thead>
+        <tr>
+            <th scope="col">
+                <div class="th-center">Moyenne</div>
+            </th>
+            <th scope="col">
+                <div class="th-center">Variance</div>
+            </th>
+            <th scope="col">
+                <div class="th-center">Ecart-Type</div>
+            </th>
+            <th scope="col">
+                <div class="th-center">Min</div>
+            </th>
+            <th scope="col">
+                <div class="th-center">Max</div>
+            </th>
+            <th scope="col">
+                <div class="th-center">Nombre de valeurs</div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td id="label_moy">0</td>
+            <td id="label_var">0</td>
+            <td id="label_ecty">0</td>
+            <td id="label_min">0</td>
+            <td id="label_max">0</td>
+            <td id="label_quantity">0</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+
+
+
+<!--     <form>
         <input type="checkbox" onchange="display('Temperature')" id="Temperature" name=""><label>Temperature</label>
         <input type="checkbox" onchange="display('Hauteur')" id="Hauteur" name=""><label>Hauteur</label>
         <input type="checkbox" onchange="display('Densité')" id="Densité" name=""><label>Densité</label>
         <input type="checkbox" onchange="display('Hauteur2')" id="Hauteur2" name=""><label>Hauteur2</label>
         <input type="checkbox" onchange="display('Densité2')" id="Densité2" name=""><label>Densité2</label>
     </form>
+ -->
+
+
+    <script src="controler.js"></script>
+    <script src="export.js"></script>
+    <script src="jspdf.min.js"></script>
+    <script src="graph.js"></script>
+    <script src="calcul.js"></script>
 </body>
 </html>
