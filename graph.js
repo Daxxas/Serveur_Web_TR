@@ -117,11 +117,11 @@ var port = 1883;
 
 function onConnect(){
     console.log("Connected");
-    message = new Paho.message("Hello");
-    message.destinationName = "data";
-    mqtt.send(message);
+    mqtt.subscribe("data");    
 }
-
+function onMessageArrived(message) {
+    console.log("onMessageArrived:"+message.payloadString);
+  }
 
 function MQTTconnect(){
     console.log("Connecting to "+host+":"+port);
@@ -133,6 +133,7 @@ function MQTTconnect(){
     mqtt.connect(options);
     mqtt.onMessageArrived = onMessageArrived;
 }
+mqtt.onMessageArrived = onMessageArrived;
 
  /*function pub(){
     client.subscribe('presence', function (err) {
@@ -164,9 +165,7 @@ function MQTTconnect(){
     })
 } */
 
-function onMessageArrived(message) {
-    console.log("onMessageArrived:"+message.payloadString);
-  }
+
 
 function display(graph){
     if (document.getElementById(graph).checked == true){
