@@ -133,7 +133,6 @@ function MQTTconnect(){
     mqtt.connect(options);
     mqtt.onMessageArrived = onMessageArrived;
 }
-mqtt.onMessageArrived = onMessageArrived;
 
  /*function pub(){
     client.subscribe('presence', function (err) {
