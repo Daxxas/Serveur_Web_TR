@@ -112,7 +112,7 @@ function wait(ms){
 
 var mqtt;
 var reconnectTimeout = 2000;
-var host = "192.168.44.11";
+var host = "kylo.iut-orsay";
 var port = 1884;
 
 function onConnect(){
