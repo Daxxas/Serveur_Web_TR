@@ -115,12 +115,20 @@ var reconnectTimeout = 2000;
 var host = "8.44.11";
 var port = 1883;
 
+function onConnect(){
+    console.log("Connected");
+    message = new Paho.message("Hello");
+    message.destinationName = "data";
+    mqtt.send(message);
+}
+
 
 function MQTTconnect(){
     console.log("Connecting to "+host+":"+port);
     mqtt = new Paho.Client("192.168.44.11",Number(443),"/data","clientjs");
     var options = {
         timeout : 3,
+        onSuccess : onConnect,
     };
     mqtt.connect(options);
     mqtt.onMessageArrived = onMessageArrived;
