@@ -200,6 +200,11 @@ function processing(requete)
 {
     console.log("Start")
     console.log("Requete : " + requete)
+    if("Ram" in requete)
+    {
+        console.log("Message from monitoring -> skipped")
+        return;
+    }
     const obj = JSON.parse(requete)
     console.log("obj : " + obj);
     var key
