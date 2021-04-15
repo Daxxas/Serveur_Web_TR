@@ -200,7 +200,7 @@ function processing(requete)
 {
     console.log("Start")
     console.log("Requete : " + requete)
-    if("Ram" in requete)
+    if(requete.search("Ram") != -1)
     {
         console.log("Message from monitoring -> skipped")
         return;
