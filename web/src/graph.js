@@ -112,22 +112,27 @@ function wait(ms){
 
 var mqtt;
 var reconnectTimeout = 2000;
-var host = "8.44.11";
-var port = 1883;
+var host = "kylo.iut-orsay";
+var port = 1884;
 
+function onConnect(){
+    console.log("Connected");
+    message = new Paho.MQTT.message("Hello");
+    message.destinationName = "data";
+    mqtt.send(message);
+}
 
 function MQTTconnect(){
     console.log("Connecting to "+host+":"+port);
-    mqtt = new Paho.Client("192.168.44.11",Number(443),"/data","clientjs");
+    mqtt = new Paho.Client(host,port,"clientjs");
     var options = {
         timeout : 3,
         onSuccess: onConnect,
     };
     mqtt.connect(options);
-    mqtt.onMessageArrived = onMessageArrived;
 }
 
- /*function pub(){
+/* function pub(){
     client.subscribe('presence', function (err) {
         if (!err) {
             var id = 2;
@@ -157,9 +162,6 @@ function MQTTconnect(){
     })
 } */
 
-function onMessageArrived(message) {
-    console.log("onMessageArrived:"+message.payloadString);
-  }
 
 function display(graph){
     if (document.getElementById(graph).checked == true){
