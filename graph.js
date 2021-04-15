@@ -121,7 +121,8 @@ function onConnect(){
 }
 function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
-    processing(message.payloadString);
+    console.log("Message : " + message)
+    processing(message);
   }
 
 function MQTTconnect(){
@@ -199,6 +200,7 @@ var reg = new Register()
 function processing(requete)
 {
     console.log("Start")
+    console.log("Requete : " + requete)
     const obj = JSON.parse(requete)
     console.log("obj : " + obj);
     var key
