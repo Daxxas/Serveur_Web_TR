@@ -121,8 +121,7 @@ function onConnect(){
 }
 function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
-    console.log("Message : " + message)
-    processing(message);
+    processing(message.payloadString);
   }
 
 function MQTTconnect(){
