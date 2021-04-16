@@ -34,7 +34,7 @@ var myChart = new Chart(ctx, {
 });
 //myChart.render()
 */
-
+/*
 var dataTemp = {
     Temperature : {
         name: "Temperature",
@@ -67,7 +67,7 @@ var dataTemp = {
         color : "rgb(100, 0, 100)"
     }
 }
-var keys = Object.keys(dataTemp);
+var keys = Object.keys(dataTemp);*/
 
 var ctx = document.getElementById('mainGraph').getContext('2d');
 var chart = new Chart(ctx, {
@@ -82,8 +82,8 @@ var chart = new Chart(ctx, {
 
     // Configuration options go here
     options: {
-        responsive: true,
-        maintainAspectRatio: false,
+        /*responsive: true,
+        maintainAspectRatio: false,*/
         scales : {
             y: {
                 min: 50,
@@ -178,7 +178,7 @@ function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
     processing(message.payloadString);
   }
-
+/*
 function display(graph){
     if (document.getElementById(graph).checked == true){
         var newDataset = {
@@ -206,7 +206,7 @@ function display(graph){
         }
     }
 }
-
+*/
 var reg = new Register()
 function processing(requete)
 {
