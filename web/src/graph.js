@@ -111,11 +111,15 @@ function wait(ms){
     }
 }
 
+
+function onConnect(){
+    console.log("Connected")
+}
+
 var mqtt;
 var reconnectTimeout = 2000;
-var host = "8.44.11";
+var host = "192.168.44.11";
 var port = 1883;
-
 
 function MQTTconnect(){
     console.log("Connecting to "+host+":"+port);
