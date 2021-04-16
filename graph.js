@@ -85,11 +85,23 @@ var chart = new Chart(ctx, {
         /*responsive: true,
         maintainAspectRatio: false,*/
         scales : {
-            y: {
-                min: 50,
-                max: 100
-            }
-        }
+                    /*xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Month'
+                            }
+                        }],*/
+                    yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 10,
+                                stepValue: 5,
+                                max: 100
+                            }
+                        }]
+                }
     }
 
 });
