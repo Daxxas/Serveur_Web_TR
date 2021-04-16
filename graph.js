@@ -121,6 +121,11 @@ function onConnect(){
     console.log("Connected")
     mqtt.subscribe("data");
 }
+function onConnectionLost(responseObject) {
+    if (responseObject.errorCode !== 0) {
+      console.log("onConnectionLost:"+responseObject.errorMessage);
+    }
+  }
 
 var mqtt;
 var reconnectTimeout = 2000;
@@ -136,6 +141,7 @@ function MQTTconnect(){
     };
     mqtt.connect(options);
     mqtt.onMessageArrived = onMessageArrived;
+    mqtt.onConnectionLost = onConnectionLost;
 }
 
  /*function pub(){
@@ -204,13 +210,15 @@ function display(graph){
 var reg = new Register()
 function processing(requete)
 {
-    const obj = JSON.parse(requete)
-    var key
     if(requete.search("Ram") != -1)
     {
         console.log("message from monitoring -> skipped")
         return
     }
+
+    const obj = JSON.parse(requete)
+    var key
+
     for(key in obj)
     {
         if(key == "id")
