@@ -170,6 +170,7 @@ function MQTTconnect(){
 */
 function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
+    processing(message.payloadString);
   }
 
 function display(graph){
@@ -205,6 +206,11 @@ function processing(requete)
 {
     const obj = JSON.parse(requete)
     var key
+    if(requete.search("Ram") != -1)
+    {
+        console.log("message from monitoring -> skipped")
+        return
+    }
     for(key in obj)
     {
         if(key == "id")
