@@ -86,8 +86,8 @@ var chart = new Chart(ctx, {
         maintainAspectRatio: false,
         scales : {
             y: {
-                suggestedMin: 50,
-                suggestedMax: 100
+                min: 50,
+                max: 100
             }
         }
     }
