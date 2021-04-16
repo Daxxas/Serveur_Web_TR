@@ -83,7 +83,13 @@ var chart = new Chart(ctx, {
     // Configuration options go here
     options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        scales : {
+            y: {
+                suggestedMin: 50,
+                suggestedMax: 100
+            }
+        }
     }
 
 });
