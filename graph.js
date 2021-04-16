@@ -119,6 +119,7 @@ function wait(ms){
 
 function onConnect(){
     console.log("Connected")
+    mqtt.subscribe("data");
 }
 
 var mqtt;
