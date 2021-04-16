@@ -82,8 +82,8 @@ var chart = new Chart(ctx, {
 
     // Configuration options go here
     options: {
-        /*responsive: true,
-        maintainAspectRatio: false,*/
+        responsive: true,
+        maintainAspectRatio: false,
         scales : {
                     /*xAxes: [{
                             display: true,
