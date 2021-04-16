@@ -137,7 +137,7 @@ function MQTTconnect(){
     mqtt.onMessageArrived = onMessageArrived;
 }
 
- function pub(){
+ /*function pub(){
     client.subscribe('presence', function (err) {
         if (!err) {
             var id = 2;
@@ -166,7 +166,7 @@ function MQTTconnect(){
         }
     })
 } 
-
+*/
 function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
   }
