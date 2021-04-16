@@ -92,19 +92,28 @@ var chart = new Chart(ctx, {
                                 labelString: 'Month'
                             }
                         }],*/
-                    yAxes: [{
+                        yAxes: [{
                             display: true,
                             ticks: {
-                                beginAtZero: true,
+                                min: "12:11:50",
+                                steps: 10,
+                                stepValue: 5,
+                                max: "12:20:50"
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                min: 0,
                                 steps: 10,
                                 stepValue: 5,
                                 max: 100
                             }
                         }]
+                    }
                 }
-    }
 
-});
+            });
 
 
 
@@ -136,8 +145,8 @@ function onConnect(){
 function onConnectionLost(responseObject) {
     if (responseObject.errorCode !== 0) {
       console.log("onConnectionLost:"+responseObject.errorMessage);
-    }
   }
+}
 
 var mqtt;
 var reconnectTimeout = 2000;
@@ -189,7 +198,7 @@ function MQTTconnect(){
 function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
     processing(message.payloadString);
-  }
+}
 /*
 function display(graph){
     if (document.getElementById(graph).checked == true){
@@ -256,9 +265,9 @@ function Sensor(id) {
             value.forEach(data => {
                 number = number+1
                 if(!(this.dataset.has(type+number)))
-                    {
-                        this.dataset.set(type+number, new Array())
-                    }
+                {
+                    this.dataset.set(type+number, new Array())
+                }
                 this.dataset.get(type+number).push([data,Date.now()])
             });
         }else if(!(this.dataset.has(type)))
@@ -306,9 +315,9 @@ function getRandomColor() {
     var color = '#';
     for (var i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
   }
+  return color;
+}
 
 //setInterval(" pub()", 2000);
 MQTTconnect();
