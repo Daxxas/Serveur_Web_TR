@@ -82,7 +82,8 @@ var chart = new Chart(ctx, {
 
     // Configuration options go here
     options: {
-
+        responsive: true,
+        maintainAspectRatio: false
     }
 
 });
@@ -110,26 +111,22 @@ function wait(ms){
     }
 }
 
-var mqtt;
-var reconnectTimeout = 2000;
-var host = "8.44.11";
-var port = 1883;
 
 function onConnect(){
-    console.log("Connected");
-    mqtt.subscribe("data");    
+    console.log("Connected")
 }
-function onMessageArrived(message) {
-    console.log("onMessageArrived:"+message.payloadString);
-    processing(message.payloadString);
-  }
+
+var mqtt;
+var reconnectTimeout = 2000;
+var host = "192.168.44.11";
+var port = 1883;
 
 function MQTTconnect(){
     console.log("Connecting to "+host+":"+port);
     mqtt = new Paho.Client("192.168.44.11",Number(443),"/data","clientjs");
     var options = {
         timeout : 3,
-        onSuccess : onConnect,
+        onSuccess: onConnect,
     };
     mqtt.connect(options);
     mqtt.onMessageArrived = onMessageArrived;
@@ -165,7 +162,9 @@ function MQTTconnect(){
     })
 } */
 
-
+function onMessageArrived(message) {
+    console.log("onMessageArrived:"+message.payloadString);
+  }
 
 function display(graph){
     if (document.getElementById(graph).checked == true){
@@ -198,19 +197,10 @@ function display(graph){
 var reg = new Register()
 function processing(requete)
 {
-    console.log("Start")
-    console.log("Requete : " + requete)
-    if(requete.search("Ram") != -1)
-    {
-        console.log("Message from monitoring -> skipped")
-        return;
-    }
     const obj = JSON.parse(requete)
-    console.log("obj : " + obj);
     var key
     for(key in obj)
     {
-        console.log("key : " + key);
         if(key == "id")
         {
             reg.addSensor(new Sensor(obj.id))
@@ -219,7 +209,6 @@ function processing(requete)
             reg.Sensors.get(obj.id).addValue(key,obj[key])
         }
     }
-    console.log("End")
 }
 
 
