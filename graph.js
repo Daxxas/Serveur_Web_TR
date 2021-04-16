@@ -92,7 +92,7 @@ var chart = new Chart(ctx, {
                                 labelString: 'Month'
                             }
                         }],*/
-                        yAxes: [{
+                        xAxes: [{
                             display: true,
                             ticks: {
                                 min: "12:11:50",
