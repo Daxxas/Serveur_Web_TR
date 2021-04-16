@@ -154,9 +154,9 @@ function CapteurContentSwitch(id, type) {
         chart.update();
         placementChart.set(id+type,placementChart.size)
     } else {
-        console.log("Element a enlever : "+ (id+type))
+        //console.log("Element a enlever : "+ (id+type))
         var index_depart = placementChart.get(id+type)
-        console.log("index de départ : " + index_depart)
+        //console.log("index de départ : " + index_depart)
         chart.data.datasets.splice(placementChart.get(id+type),1);
         placementChart.delete(id+type)
         chart.update();
