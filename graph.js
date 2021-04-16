@@ -130,6 +130,8 @@ function MQTTconnect(){
     var options = {
         timeout : 3,
         onSuccess : onConnect,
+        responsive : true,
+        maintainAspectRatio : false,
     };
     mqtt.connect(options);
     mqtt.onMessageArrived = onMessageArrived;
