@@ -1,3 +1,4 @@
+//Export format CSV
 document.getElementById('btn_exportcsv').addEventListener("click",function()
 {
     var data = []
@@ -31,7 +32,7 @@ document.getElementById('btn_exportcsv').addEventListener("click",function()
     hiddenElement.click();
 });
 
-
+//Export format Image
 document.getElementById('btn_exportimage').addEventListener("click",function()
 {
     var canvas = document.getElementById('mainGraph')
@@ -41,6 +42,8 @@ document.getElementById('btn_exportimage').addEventListener("click",function()
     this.href = dataURL
 });
 
+
+//Export format PDF
 document.getElementById('btn_exportpdf').addEventListener("click",function(){
     //create image from dumy canvas
         var canvas = document.getElementById('mainGraph')

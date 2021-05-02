@@ -1,3 +1,7 @@
+
+var placementChart = new Map()
+var capteurNameBiggestWidth = 0;
+
 function headerSwitch(childs, parentSwitch) {
     for(let i = 0; i < childs.length; i++) {
 
@@ -16,46 +20,34 @@ function headerSwitch(childs, parentSwitch) {
     }
 }
 
-let switchbuttons = document.getElementsByClassName("switchbuttons")[0]
-
-// TODO : changer le nombre de bouton quand il n'y en aura plus par défaut
-let buttoncount = 10; // nombre de bouton présent de base
-
-let capteurNameBiggestWidth = 0;
 
 function AddCapteur(id) {
-
-    if(document.getElementById(id) != null) {
-        console.error("Attention : On essai d'ajouter un capteur avec l'id " + id + " qui existe déjà : " + document.getElementById(id))
-        return
-    }
+    let switchbuttons = document.getElementsByClassName("switchbuttons")[0]
 
     let currentCapteurIndex = document.getElementsByClassName("capteur-category").length
+    let categorydiv = document.createElement("div")
+    let headerdiv = document.createElement("div")
+    let switchheaderinput = document.createElement("input")
 
     currentCapteurIndex++
-    let categorydiv = document.createElement("div")
+
     categorydiv.className = "capteur-category"
     categorydiv.id = id
-
     switchbuttons.appendChild(categorydiv)
 
-    let headerdiv = document.createElement("div")
-    headerdiv.className = "custom-control custom-switch capteur-header"
-
-    //ajouter ici l'attribute custom qui est dans l'exemple, si je l'ai pas mis c'est que j'ai l'impression qu'il sert à rien
-
-    let switchheaderinput = document.createElement("input")
     switchheaderinput.type = "checkbox"
     switchheaderinput.className = "custom-control-input"
     switchheaderinput.setAttribute("checked", "")
     switchheaderinput.checked = false
-    switchheaderinput.id = "customSwitch" + buttoncount
+    switchheaderinput.id = "customSwitch" + id
+
     headerdiv.appendChild(switchheaderinput)
+    headerdiv.className = "custom-control custom-switch capteur-header"
 
 
     let switchheaderlabel = document.createElement("label")
     switchheaderlabel.className = "custom-control-label"
-    switchheaderlabel.setAttribute("for", "customSwitch"+buttoncount)
+    switchheaderlabel.setAttribute("for", "customSwitch"+id)
     if(id != null) {
         switchheaderlabel.textContent = "Capteur " + id
     }
@@ -63,7 +55,6 @@ function AddCapteur(id) {
         switchheaderlabel.textContent = "Capteur"
     }
 
-    buttoncount++
     headerdiv.appendChild(switchheaderlabel)
 
     categorydiv.appendChild(headerdiv)
@@ -72,74 +63,35 @@ function AddCapteur(id) {
         capteurNameBiggestWidth = headerdiv.offsetWidth
         document.documentElement.style.setProperty("minwidtheheader", capteurNameBiggestWidth)
     }
-
     switchbuttons.appendChild(categorydiv)
 }
 
-AddCapteur("test");
-AddTypeToCapteur("test", "truc");
-AddTypeToCapteur("test", "truc");
-AddTypeToCapteur("test", "truc");
-AddTypeToCapteur("test", "truc");
-AddTypeToCapteur("test", "truc");
-
 function AddTypeToCapteur(id, type) {
-
     let categorydiv = document.getElementById(id)
-
-    let childdiv = document.createElement("div")
-    childdiv.className = "custom-control custom-switch capteur-child"
 
     let switchchildinput = document.createElement("input")
     switchchildinput.type = "checkbox"
     switchchildinput.className = "custom-control-input"
     switchchildinput.setAttribute("checked", "")
     switchchildinput.checked = false;
-    switchchildinput.id = "customSwitch" + buttoncount
+    switchchildinput.id = "customSwitchType" + id
     switchchildinput.addEventListener("change", function() {CapteurContentSwitch(id, type)})
-    childdiv.appendChild(switchchildinput)
-    childdiv.addEventListener("mouseenter", function(){hoverSwitch(id,childdiv)})
-    childdiv.addEventListener("mouseleave", function(){clearMathInfo(childdiv)})
 
+    let childdiv = document.createElement("div")
+    childdiv.className = "custom-control custom-switch capteur-child"
+    childdiv.appendChild(switchchildinput)
+    childdiv.addEventListener("mouseenter", function(){setMathInfo(id,childdiv)})
+    childdiv.addEventListener("mouseleave", function(){clearMathInfo(childdiv)})
+    
     let switchchildlabel = document.createElement("label")
     switchchildlabel.className = "custom-control-label"
-    switchchildlabel.setAttribute("for", "customSwitch"+buttoncount)
+    switchchildlabel.setAttribute("for", "customSwitchType"+id)
     switchchildlabel.textContent = type
-    buttoncount++
+
     childdiv.appendChild(switchchildlabel)
-
     categorydiv.appendChild(childdiv)
-
     RefreshCapteur()
 }
-var placementChart = new Map()
-
-
-function hoverSwitch(id,object)
-{
-    object.style.fontStyle = 'oblique'
-    var type = object.children[1].innerHTML
-    var values = getAllDataFromASensor(id,type)
-    document.getElementById('label_max').innerText = max(values)
-    document.getElementById('label_min').innerText = min(values)
-    document.getElementById('label_ecty').innerText = ecart_type(values)
-    document.getElementById('label_var').innerText = variance(values)
-    document.getElementById('label_moy').innerText = moy(values)
-    document.getElementById('label_quantity').innerText = values.length   
-}
-
-function clearMathInfo(object)
-{
-    object.style.fontStyle = 'normal'
-    document.getElementById('label_max').innerText = 0
-    document.getElementById('label_min').innerText = 0
-    document.getElementById('label_ecty').innerText = 0
-    document.getElementById('label_var').innerText = 0
-    document.getElementById('label_moy').innerText = 0
-    document.getElementById('label_quantity').innerText = 0
-}
-
-
 
 function CapteurContentSwitch(id, type) {
     if (!placementChart.has(id+type)){
@@ -207,3 +159,26 @@ function RefreshCapteur() {
 
 
 
+function setMathInfo(id,object)
+{
+    object.style.fontStyle = 'oblique'
+    var type = object.children[1].innerHTML
+    var values = getAllDataFromASensor(id,type)
+    document.getElementById('label_max').innerText = max(values)
+    document.getElementById('label_min').innerText = min(values)
+    document.getElementById('label_ecty').innerText = ecart_type(values)
+    document.getElementById('label_var').innerText = variance(values)
+    document.getElementById('label_moy').innerText = moy(values)
+    document.getElementById('label_quantity').innerText = values.length   
+}
+
+function clearMathInfo(object)
+{
+    object.style.fontStyle = 'normal'
+    document.getElementById('label_max').innerText = 0
+    document.getElementById('label_min').innerText = 0
+    document.getElementById('label_ecty').innerText = 0
+    document.getElementById('label_var').innerText = 0
+    document.getElementById('label_moy').innerText = 0
+    document.getElementById('label_quantity').innerText = 0
+}
