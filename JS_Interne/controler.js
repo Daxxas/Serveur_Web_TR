@@ -8,10 +8,15 @@ function headerSwitch(childs, parentSwitch) {
         let childSwitch = childs[i].getElementsByClassName("custom-control-input")
 
         if(!parentSwitch.checked) {
-            childSwitch[0].setAttribute("disabled", "")
-            childSwitch[0].removeAttribute("checked")
-            childSwitch[0].checked = false;
-            childSwitch[0].dispatchEvent(new Event('change'));
+            if(childSwitch[0].checked)
+            {
+                childSwitch[0].click()
+                childSwitch[0].setAttribute("disabled", "")
+                childSwitch[0].removeAttribute("checked")
+                childSwitch[0].checked = false;
+            }
+
+
         }
         else {
             childSwitch[0].removeAttribute("disabled")
@@ -74,7 +79,7 @@ function AddTypeToCapteur(id, type) {
     switchchildinput.className = "custom-control-input"
     switchchildinput.setAttribute("checked", "")
     switchchildinput.checked = false;
-    switchchildinput.id = "customSwitchType" + id
+    switchchildinput.id = "customSwitchType" +type+ id
     switchchildinput.addEventListener("change", function() {CapteurContentSwitch(id, type)})
 
     let childdiv = document.createElement("div")
@@ -85,7 +90,7 @@ function AddTypeToCapteur(id, type) {
     
     let switchchildlabel = document.createElement("label")
     switchchildlabel.className = "custom-control-label"
-    switchchildlabel.setAttribute("for", "customSwitchType"+id)
+    switchchildlabel.setAttribute("for", "customSwitchType"+type+id)
     switchchildlabel.textContent = type
 
     childdiv.appendChild(switchchildlabel)
@@ -97,7 +102,7 @@ function CapteurContentSwitch(id, type) {
     if (!placementChart.has(id+type)){
         var newDataset = {
             label: type + " du capteur " + id,
-            borderColor: getRandomColor(),
+            borderColor: getCorrectColor(id+type),
             backgroundColor: 'rgba(0,0,0,0)',
             data: getAllDataFromASensor(id,type),
             fill: false
@@ -166,7 +171,6 @@ function setMathInfo(id,object)
     var values = getAllDataFromASensor(id,type)
     document.getElementById('label_max').innerText = max(values)
     document.getElementById('label_min').innerText = min(values)
-    document.getElementById('label_ecty').innerText = ecart_type(values)
     document.getElementById('label_var').innerText = variance(values)
     document.getElementById('label_moy').innerText = moy(values)
     document.getElementById('label_quantity').innerText = values.length   
@@ -175,10 +179,9 @@ function setMathInfo(id,object)
 function clearMathInfo(object)
 {
     object.style.fontStyle = 'normal'
-    document.getElementById('label_max').innerText = 0
-    document.getElementById('label_min').innerText = 0
-    document.getElementById('label_ecty').innerText = 0
-    document.getElementById('label_var').innerText = 0
-    document.getElementById('label_moy').innerText = 0
-    document.getElementById('label_quantity').innerText = 0
+    document.getElementById('label_max').innerText = ""
+    document.getElementById('label_min').innerText = "" 
+    document.getElementById('label_var').innerText = ""
+    document.getElementById('label_moy').innerText = ""
+    document.getElementById('label_quantity').innerText = ""
 }

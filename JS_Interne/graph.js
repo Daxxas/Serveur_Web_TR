@@ -78,45 +78,6 @@ function wait(ms){
 }
 
 
-
-
-
-
-
-
-
- /*function pub(){
-    client.subscribe('presence', function (err) {
-        if (!err) {
-            var id = 2;
-            var type = "Temperature"
-            var data = Math.floor(Math.random() * 3);
-            var concat = '{"id":'+id+',"'+type+'":'+data+'}'
-            client.publish('presence',concat.toString())
-        }
-    })
-    client.subscribe('presence', function (err) {
-        if (!err) {
-            var id = 1;
-            var type = "Humidity"
-            var data = Math.floor(Math.random() * 3);
-            var concat = '{"id":'+id+',"'+type+'":'+data+'}'
-            client.publish('presence',concat.toString())
-        }
-    })
-    client.subscribe('presence', function (err) {
-        if (!err) {
-            var id = 1;
-            var type = "Temperature"
-            var data = Math.floor(Math.random() * 3);
-            var concat = '{"id":'+id+',"'+type+'":'+data+'}'
-            client.publish('presence',concat.toString())
-        }
-    })
-} */
-
-
-
 function display(graph){
     if (document.getElementById(graph).checked == true){
         var newDataset = {
@@ -164,3 +125,45 @@ function getRandomColor() {
     return color;
   }
 
+
+//Par Charlie Coleman | J'ai récupéré son code sur son site "charlie-coleman.com", je me devais de le dire :)
+function getCorrectColor(color) { //Function to turn the string into a color. Most important function. Enter the math factory.
+    color = color.replace(/\s+/g, '');
+    color = color.replace(/[^a-zA-Z 0-9]+/g, '');
+    var lengthC = color.length; //length of the string
+    var amount = Math.ceil(lengthC/3); //Determine length of the 3 parts that will define R, G, and B
+    var add = amount*3 - lengthC; //Determine how many characters need to be added to reach the length needed
+    if(color.length > add) //if the string is longer than the number of characters to be added (if length != 1, basically)
+        color+=color.substring(0, add); //x is the number of characters to be added, takes x characters from the start of the string and adds them to the end.
+    else { //if length == 1, basically
+        for(var i = 0; i < add; i++) {
+            color += color.substring(0,1); //adds the first charecter until you have enough charecters
+        }
+    }
+    var red36 = color.substring(0, amount); //splits the string into 3 sections of equal length
+    var green36 = color.substring(amount, amount*2);
+    var blue36 = color.substring(amount*2, amount*3);
+    if(red36 == '')
+        red36 = '0';
+    if(green36 =='')
+        green36 = '0';
+    if(blue36 == '')
+        blue36 = '0';
+    var red = parseInt(red36,36); //Turns the numbers from base-36 to base-10 (decimal)
+    var green = parseInt(green36,36);
+    var blue = parseInt(blue36,36);
+    var max = Math.pow(36,amount)-1; // calculates the maximum possible value for a base-36 number of the length that each of the sections is
+    if(max == 0)
+        max = 1;
+    var red16 = Math.round((red/max)*255).toString(16); //scales each value down to fit between 0 and 255, then converts them to base-16 (hexadecimal)
+    var green16 = Math.round((green/max)*255).toString(16);
+    var blue16 = Math.round((blue/max)*255).toString(16);
+    if(red16.length < 2) //makes sure all 3 parts are 2 digits long
+        red16 = "0" + red16;
+    if(green16.length < 2)
+        green16 = "0" + green16;
+    if(blue16.length < 2)
+        blue16 = "0" + blue16;
+    var newColor = "#"+red16+green16+blue16; //creates the color
+    return newColor; //returns the color
+};
