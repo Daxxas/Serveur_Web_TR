@@ -7,12 +7,20 @@ var chart = new Chart(ctx, {
 
     // The data for our dataset
     data: {
-        labels: ['0'],
+        labels: ["0"],
         datasets: []
     },
     spanGaps: true,
     // Configuration options go here
     options: {
+         plugins: {
+          zoom: {
+            zoom: {
+              enabled: true,
+              mode: 'xy',
+            }
+          }
+        }
         responsive: true,
         maintainAspectRatio: false
     }
