@@ -1,4 +1,4 @@
-var reg = new Register()
+        var reg = new Register()
 var ctx = document.getElementById('mainGraph').getContext('2d');
 
 var chart = new Chart(ctx, {
@@ -26,6 +26,12 @@ var chart = new Chart(ctx, {
     }
 
 });
+
+document.getElementById("resetbtn").addEventListener('click', function() { 
+            chart.resetZoom(); 
+        }, 
+false);
+    
 
 function Register() {
     this.Sensors = new Map()
