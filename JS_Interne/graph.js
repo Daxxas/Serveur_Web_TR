@@ -17,7 +17,7 @@ var chart = new Chart(ctx, {
           zoom: {
             zoom: {
               enabled: true,
-              mode: 'xy',
+              mode: 'xy'
             }
           }
         }
