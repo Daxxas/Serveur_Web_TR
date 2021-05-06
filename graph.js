@@ -95,10 +95,7 @@ var chart = new Chart(ctx, {
                         xAxes: [{
                             display: true,
                             ticks: {
-                                min: "12:11:50",
-                                steps: 10,
-                                stepValue: 5,
-                                max: "12:20:50"
+                                
                             }
                         }],
                         yAxes: [{
@@ -106,7 +103,6 @@ var chart = new Chart(ctx, {
                             ticks: {
                                 min: 0,
                                 steps: 10,
-                                stepValue: 5,
                                 max: 100
                             }
                         }]
