@@ -10,7 +10,7 @@ var chart = new Chart(ctx, {
         labels: ['0'],
         datasets: []
     },
-
+    spanGaps: true,
     // Configuration options go here
     options: {
         responsive: true,
