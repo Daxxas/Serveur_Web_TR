@@ -29,6 +29,21 @@ li a:hover {
 }
 */
 
+/**/
+#slideSource {
+    opacity: 1;
+    transition: opacity 1s; 
+  }
+
+#slideSource.fade {
+opacity: 0;
+}
+/**/
+
+.errorMessage {
+    margin-top: 40vh;
+}
+
 body {
     height: 100%;
     padding: 0;

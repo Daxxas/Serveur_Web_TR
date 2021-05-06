@@ -3,16 +3,39 @@ var reconnectTimeout = 2000;
 var host = "127.0.0.1";
 var port = 9001;
 
+//var host = "192.168.44.11";
+//var port = 443;
+
+
 
 function onConnect(){
     console.log("Connected")
     mqtt.subscribe("data");
 }
 function onConnectionLost(responseObject) {
-    if (responseObject.errorCode !== 0) {
-      console.log("onConnectionLost:"+responseObject.errorMessage);
-    }
+    var slideSource = document.getElementById('slideSource');
+    slideSource.classList.toggle('fade');
+
+    setTimeout('printErrorMessage()',1000)
 }
+
+function printErrorMessage()
+{
+    var node = document.getElementById('slideSource')
+    node.innerHTML = '';
+
+
+    var errorMessage = document.createElement('h1')
+    errorMessage.innerHTML = "Connexion perdue !"
+    errorMessage.className = "text-center errorMessage"
+    var errorMessageh3 = document.createElement('h3')
+    errorMessageh3.innerHTML = "Veuillez recharger la page ❤"
+    errorMessageh3.className = "text-center errorMessage"
+    document.getElementById('slideSource').appendChild(errorMessage)
+    document.getElementById('slideSource').appendChild(errorMessageh3)
+    node.classList.toggle('fade');
+}
+
 function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
     processing(message.payloadString);
@@ -24,7 +47,9 @@ function MQTTconnect(){
     var options = {
         timeout : 3,
         onSuccess: onConnect,
+        onFailure : onConnectionLost
     };
+    mqtt.onerror = onConnectionLost;
     mqtt.connect(options);
     mqtt.onMessageArrived = onMessageArrived;
     mqtt.onConnectionLost = onConnectionLost;
@@ -51,3 +76,5 @@ function processing(requete)
 }
 
 MQTTconnect();
+
+
