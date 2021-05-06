@@ -105,7 +105,8 @@ function CapteurContentSwitch(id, type) {
             borderColor: getCorrectColor(id+type),
             backgroundColor: 'rgba(0,0,0,0)',
             data: getAllDataFromASensor(id,type),
-            fill: false
+            fill: false,
+            spanGaps: true,
         };
         chart.data.datasets.push(newDataset);
         chart.update();
@@ -179,9 +180,62 @@ function setMathInfo(id,object)
 function clearMathInfo(object)
 {
     object.style.fontStyle = 'normal'
-    document.getElementById('label_max').innerText = ""
-    document.getElementById('label_min').innerText = "" 
-    document.getElementById('label_var').innerText = ""
-    document.getElementById('label_moy').innerText = ""
-    document.getElementById('label_quantity').innerText = ""
+    document.getElementById('label_max').innerText = "&#8203;"
+    document.getElementById('label_min').innerText = "&#8203;" 
+    document.getElementById('label_var').innerText = "&#8203;"
+    document.getElementById('label_moy').innerText = "&#8203;"
+    document.getElementById('label_quantity').innerText = "&#8203;"
+}
+
+
+
+function getFullDate()
+{
+    var date = new Date()
+
+    var hours = date.getHours();
+    var minutes = "0" + date.getMinutes();
+    var seconds = "0" + date.getSeconds();
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = date.getFullYear();
+    var formattedTime = dd + '/' + mm + '/' + yyyy + " " + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+    return formattedTime
+}
+
+function getDate()
+{
+    var date = new Date()
+
+    var hours = date.getHours();
+    var minutes = "0" + date.getMinutes();
+    var seconds = "0" + date.getSeconds();
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = date.getFullYear();
+    var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+    return formattedTime
+}
+
+
+//Interval
+setInterval("action()",10000)
+function action()
+{
+    reg.Sensors.forEach(element => {
+        element.dataset.forEach((values,key)=>{
+           if(values.length < chart.data.labels.length)
+           {
+               console.log(element.id,key, "A augmenter")
+               element.addValue(key,"null")
+           }
+        })
+    });
+
+
+
+    chart.data.labels.push(getDate())
+    chart.update()
 }

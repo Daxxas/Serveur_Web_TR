@@ -1,4 +1,4 @@
-        var reg = new Register()
+var reg = new Register()
 var ctx = document.getElementById('mainGraph').getContext('2d');
 
 var chart = new Chart(ctx, {
@@ -10,7 +10,7 @@ var chart = new Chart(ctx, {
         labels: ["0"],
         datasets: []
     },
-    spanGaps: true,
+    
     // Configuration options go here
     options: {
          plugins: {
@@ -57,16 +57,20 @@ function Sensor(id) {
                 if(!(this.dataset.has(type+number)))
                     {
                         this.dataset.set(type+number, new Array())
+
                     }
-                this.dataset.get(type+number).push([data,Date.now()])
+                this.dataset.get(type+number).push([data])
             });
         }else if(!(this.dataset.has(type)))
         {
             this.dataset.set(type, new Array())
-            this.dataset.get(type).push([value,Date.now()])
+            for (let index = 0; index < chart.data.labels.length; index++) {
+                this.dataset.get(type).push("null")
+            }
+            this.dataset.get(type).push([value])
             AddTypeToCapteur(id,type)
         }else
-        this.dataset.get(type).push([value,Date.now()])
+        this.dataset.get(type).push([value])
 
         if(placementChart.has(id+type))
         {
@@ -92,14 +96,15 @@ function wait(ms){
 }
 
 
-function display(graph){
+/*function display(graph){
     if (document.getElementById(graph).checked == true){
         var newDataset = {
             label: 'Dataset ' + graph,
             borderColor: dataTemp[graph].color,
             backgroundColor: 'rgba(0, 0, 0, 0)',
             data: dataTemp[graph].data,
-            fill: false
+            fill: false,
+            spanGaps: true,
         };
 
         chart.data.datasets.push(newDataset);
@@ -118,14 +123,13 @@ function display(graph){
             }
         }
     }
-}
+}*/
 
 function getAllDataFromASensor(id,type){
     var toReturn = []
     var length = reg.Sensors.get(id).dataset.get(type).length
     for (let index = 0; index < length; index++) {
         toReturn.push(reg.Sensors.get(id).dataset.get(type)[index][0])
-        
     }
     return toReturn
 }

@@ -38,6 +38,7 @@ function processing(requete)
         console.log("message from monitoring -> skipped"); return;}
 
     const obj = JSON.parse(requete)
+    action()    
     var key;
     for(key in obj)
     {
