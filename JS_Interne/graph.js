@@ -20,7 +20,7 @@ var chart = new Chart(ctx, {
               mode: 'xy'
             }
           }
-        }
+        },
         responsive: true,
         maintainAspectRatio: false
     }
