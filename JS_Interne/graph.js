@@ -1,4 +1,5 @@
 var reg = new Register()
+
 var ctx = document.getElementById('mainGraph').getContext('2d');
 
 var chart = new Chart(ctx, {

@@ -71,7 +71,9 @@ body,html {
 .chart-raspberry {
     height: calc(100% - 55px);
 }
-
+canvas#mainGraph {
+    background-color: white;
+  }
 .chart-stats {
     margin-top: 10px;
     flex-wrap: nowrap;
