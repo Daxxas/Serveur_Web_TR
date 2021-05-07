@@ -95,6 +95,12 @@ body {
 
 }
 
+#resetbtn {
+    position: absolute;
+    bottom: 194px;
+    right: 37px;
+}
+
 .flex-child2 {
     /* Si on veut des boutons + larges ou plus d'espace pour les boutons, changer ici */
     width: 25%;

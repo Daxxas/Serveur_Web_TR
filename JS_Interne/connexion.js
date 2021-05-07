@@ -13,10 +13,10 @@ function onConnect(){
     mqtt.subscribe("data");
 }
 function onConnectionLost(responseObject) {
-    var slideSource = document.getElementById('slideSource');
-    slideSource.classList.toggle('fade');
-
-    setTimeout('printErrorMessage()',1000)
+    // var slideSource = document.getElementById('slideSource');
+    // slideSource.classList.toggle('fade');
+    //
+    // setTimeout('printErrorMessage()',1000)
 }
 
 function printErrorMessage()
