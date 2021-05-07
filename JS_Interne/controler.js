@@ -169,7 +169,7 @@ function setMathInfo(id,object)
 {
     object.style.fontStyle = 'oblique'
     var type = object.children[1].innerHTML
-    var values = getAllDataFromASensor(id,type)
+    var values = getAllDataFromASensorWithoutNull(id,type)
     console.log(values)
     document.getElementById('label_max').innerText = max(values)
     document.getElementById('label_min').innerText = min(values)
