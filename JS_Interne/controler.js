@@ -170,6 +170,7 @@ function setMathInfo(id,object)
     object.style.fontStyle = 'oblique'
     var type = object.children[1].innerHTML
     var values = getAllDataFromASensor(id,type)
+    console.log(values)
     document.getElementById('label_max').innerText = max(values)
     document.getElementById('label_min').innerText = min(values)
     document.getElementById('label_var').innerText = variance(values)
@@ -180,11 +181,11 @@ function setMathInfo(id,object)
 function clearMathInfo(object)
 {
     object.style.fontStyle = 'normal'
-    document.getElementById('label_max').innerText = "&#8203;"
-    document.getElementById('label_min').innerText = "&#8203;" 
-    document.getElementById('label_var').innerText = "&#8203;"
-    document.getElementById('label_moy').innerText = "&#8203;"
-    document.getElementById('label_quantity').innerText = "&#8203;"
+    document.getElementById('label_max').innerText = '&#8203;'
+    document.getElementById('label_min').innerText = '&#8203;' 
+    document.getElementById('label_var').innerText = '&#8203;'
+    document.getElementById('label_moy').innerText = '&#8203;'
+    document.getElementById('label_quantity').innerText = '&#8203;'
 }
 
 

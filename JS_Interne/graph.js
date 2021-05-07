@@ -129,7 +129,11 @@ function getAllDataFromASensor(id,type){
     var toReturn = []
     var length = reg.Sensors.get(id).dataset.get(type).length
     for (let index = 0; index < length; index++) {
-        toReturn.push(reg.Sensors.get(id).dataset.get(type)[index][0])
+        if(reg.Sensors.get(id).dataset.get(type)[index] != "null")
+        {
+            toReturn.push(reg.Sensors.get(id).dataset.get(type)[index][0])
+        }
+
     }
     return toReturn
 }
