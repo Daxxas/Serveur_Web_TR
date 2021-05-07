@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raspberry</title>
+    <!-- CSS_Externe-->
+    <link rel="stylesheet" href="CSS_Externe/bootstrap.min.css">
+    <!-- CSS_Interne-->
+    <link rel="stylesheet" href="CSS_Interne/style.css">
+
+</head>
+    <body>
+        <nav class="navbar navbar-expand navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Raspberry</a>
+            <div id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Graphique temps réel</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="chart-raspberry">
+            <canvas id="mainGraph"></canvas>
+        </div>
+    <script src="JS_Externe\Chart.min.js" type="text/javascript"></script>
+    <script src="JS_Interne\raspberry.js" type="text/javascript"></script>
+    </body>
+</html>

@@ -44,7 +44,7 @@ opacity: 0;
     margin-top: 40vh;
 }
 
-body {
+body,html {
     height: 100%;
     padding: 0;
     margin: 0;
@@ -66,6 +66,10 @@ body {
 
 .chart {
     height: calc(100% - 154px);
+}
+
+.chart-raspberry {
+    height: calc(100% - 55px);
 }
 
 .chart-stats {
