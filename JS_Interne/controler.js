@@ -181,11 +181,11 @@ function setMathInfo(id,object)
 function clearMathInfo(object)
 {
     object.style.fontStyle = 'normal'
-    document.getElementById('label_max').innerText = '&#8203;'
-    document.getElementById('label_min').innerText = '&#8203;' 
-    document.getElementById('label_var').innerText = '&#8203;'
-    document.getElementById('label_moy').innerText = '&#8203;'
-    document.getElementById('label_quantity').innerText = '&#8203;'
+    document.getElementById('label_max').innerText = '	‏ '
+    document.getElementById('label_min').innerText = '	‏ ' 
+    document.getElementById('label_var').innerText = '	‏ '
+    document.getElementById('label_moy').innerText = '	‏ '
+    document.getElementById('label_quantity').innerText = '	‏ '
 }
 
 
