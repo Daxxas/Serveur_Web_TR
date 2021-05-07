@@ -1,8 +1,44 @@
 //Export format CSV
 document.getElementById('btn_exportcsv').addEventListener("click",function()
 {
-    
+    var csv = [];
+
+    for (let [key, value] of reg.Sensors) {
+        var row = [];
+        row.push(key);
+        csv.push(row.join("\n"));
+        row = [];
+        for (let [key2, value2] of reg.Sensors.get(key).dataset) {
+            row.push(getAllDataFromASensorWithoutNull(key,key2));
+            csv.push(row.join(";"));
+        }
+        csv.push(row.join("\n"));
+        csv.push(row.join("\n"));
+    }
+
+    // download csv file
+    downloadCSV(csv.join("\n"), "export-data.csv");
 });
+
+
+//Downdload csv file
+function downloadCSV(csv, filename) {
+    var csvFile;
+    var downloadLink;
+
+    if (window.Blob == undefined || window.URL == undefined || window.URL.createObjectURL == undefined) {
+        alert("Your browser doesn't support Blobs");
+        return;
+    }
+    
+    csvFile = new Blob([csv], {type:"text/csv"});
+    downloadLink = document.createElement("a");
+    downloadLink.download = filename;
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+}
 
 //Export format Image
 document.getElementById('btn_exportimage').addEventListener("click",function()
