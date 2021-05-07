@@ -7,20 +7,24 @@ document.getElementById('btn_exportcsv').addEventListener("click",function()
     row.push("NumCapteur");
     row.push("Type");
     row.push("Valeur");
-    csv.push(row.join(";"));
+    csv.push(row.join(","));
     for (let [key, value] of reg.Sensors) {
-        row = [];
-        row.push(key2);
-        csv.push(row.join("\n"));
-        row = [];
-        for (let [key2, value2] of reg.Sensors.get(key).dataset) {
-            row.push(getAllDataFromASensorWithoutNull(key,key2));
-        }
-        csv.push(row.join(";"));
+        var keys_type = Array.from( reg.Sensors.get(key).dataset.keys() );
+        keys_type.forEach(element => {
+            row = []
+            var donnees = getAllDataFromASensorWithoutNull(key,element)
+            row.push(key)
+            row.push(element)
+            donnees.forEach(donneelement => {
+                row.push(donneelement)
+            });
+            csv.push(row.join(","));
+        });
+        
     }
 
     // download csv file
-    downloadCSV(csv.join("\n"), "export-data.csv");
+    downloadCSV(csv.join("\n"), "export.csv");
 });
 
 
