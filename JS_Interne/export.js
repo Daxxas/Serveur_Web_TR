@@ -3,17 +3,20 @@ document.getElementById('btn_exportcsv').addEventListener("click",function()
 {
     var csv = [];
 
+    var row = [];
+    row.push("NumCapteur");
+    row.push("Type");
+    row.push("Valeur");
+    csv.push(row.join(";"));
     for (let [key, value] of reg.Sensors) {
-        var row = [];
-        row.push(key);
+        row = [];
+        row.push(key2);
         csv.push(row.join("\n"));
         row = [];
         for (let [key2, value2] of reg.Sensors.get(key).dataset) {
             row.push(getAllDataFromASensorWithoutNull(key,key2));
-            csv.push(row.join(";"));
         }
-        csv.push(row.join("\n"));
-        csv.push(row.join("\n"));
+        csv.push(row.join(";"));
     }
 
     // download csv file
