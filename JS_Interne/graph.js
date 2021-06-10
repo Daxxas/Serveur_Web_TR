@@ -18,7 +18,7 @@ var chart = new Chart(ctx, {
         yAxes: [{
                             display: true,
                             ticks: {
-                                beginAtZero: true,
+                                min: 0,
                                 steps: 10,
                                 stepValue: 5,
                                 max: 150
