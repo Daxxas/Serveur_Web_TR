@@ -21,7 +21,7 @@ var chart = new Chart(ctx, {
                                 beginAtZero: true,
                                 steps: 10,
                                 stepValue: 5,
-                                max: 100
+                                max: 150
                             }
                         }]
         },
