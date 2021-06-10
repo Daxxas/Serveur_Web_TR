@@ -11,14 +11,11 @@ function headerSwitch(childs, parentSwitch) {
             if(childSwitch[0].checked)
             {
                 childSwitch[0].click()
-                childSwitch[0].setAttribute("disabled", "")
                 childSwitch[0].removeAttribute("checked")
                 childSwitch[0].checked = false;
             }
-            else {
-                childSwitch[0].setAttribute("disabled", "")
-            }
-
+            
+            childSwitch[0].setAttribute("disabled", "")
 
         }
         else {
