@@ -14,6 +14,15 @@ var chart = new Chart(ctx, {
     
     // Configuration options go here
     options: {
+        yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 10,
+                                stepValue: 5,
+                                max: 100
+                            }
+                        }],
          plugins: {
           zoom: {
             zoom: {
