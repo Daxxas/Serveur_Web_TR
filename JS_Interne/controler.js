@@ -8,15 +8,10 @@ function headerSwitch(childs, parentSwitch) {
         let childSwitch = childs[i].getElementsByClassName("custom-control-input")
 
         if(!parentSwitch.checked) {
-            if(childSwitch[0].checked)
-            {
-                childSwitch[0].click()
-                childSwitch[0].setAttribute("disabled", "")
-                childSwitch[0].removeAttribute("checked")
-                childSwitch[0].checked = false;
-            }
-
-
+            childSwitch[0].checked = false;
+            childSwitch[0].click()
+            childSwitch[0].setAttribute("disabled", "")
+            childSwitch[0].removeAttribute("checked")
         }
         else {
             childSwitch[0].removeAttribute("disabled")
@@ -181,11 +176,11 @@ function setMathInfo(id,object)
 function clearMathInfo(object)
 {
     object.style.fontStyle = 'normal'
-    document.getElementById('label_max').innerText = '	‏ '
-    document.getElementById('label_min').innerText = '	‏ ' 
-    document.getElementById('label_var').innerText = '	‏ '
-    document.getElementById('label_moy').innerText = '	‏ '
-    document.getElementById('label_quantity').innerText = '	‏ '
+    document.getElementById('label_max').innerText = '  ‏ '
+    document.getElementById('label_min').innerText = '  ‏ ' 
+    document.getElementById('label_var').innerText = '  ‏ '
+    document.getElementById('label_moy').innerText = '  ‏ '
+    document.getElementById('label_quantity').innerText = ' ‏ '
 }
 
 
