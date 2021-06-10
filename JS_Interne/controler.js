@@ -108,21 +108,24 @@ function CapteurContentSwitch(id, type) {
             fill: false,
             spanGaps: true,
         };
-        let switchData = getAllDataFromASensor(id, type);
-        let minValue = switchData[0];
-        let maxValue = switchData[0];
-        for (let i = 0; i < switchData.length; i++) {
-            if(minValue > switchData[i]) {
-                minValue = switchData[i];
-            }
 
-            if(maxValue < switchData[i]) {
-                maxValue = switchData[i];
-            }
-        }
+        // Marche po, faut essayer avec le plugin de zoom à la place
 
-        chart.options.scales.yAxes[0].ticks.min = parseFloat(minValue);
-        chart.options.scales.yAxes[0].ticks.max = parseFloat(maxValue);
+        // let switchData = getAllDataFromASensor(id, type);
+        // let minValue = switchData[0];
+        // let maxValue = switchData[0];
+        // for (let i = 0; i < switchData.length; i++) {
+        //     if(minValue > switchData[i]) {
+        //         minValue = switchData[i];
+        //     }
+        //
+        //     if(maxValue < switchData[i]) {
+        //         maxValue = switchData[i];
+        //     }
+        // }
+        //
+        // chart.options.scales.yAxes[0].ticks.min = parseFloat(minValue)s;
+        // chart.options.scales.yAxes[0].ticks.max = parseFloat(maxValue);
 
         chart.data.datasets.push(newDataset);
         chart.update();
