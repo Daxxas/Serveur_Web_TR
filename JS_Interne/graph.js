@@ -14,6 +14,17 @@ var chart = new Chart(ctx, {
     
     // Configuration options go here
     options: {
+        scales: {
+        yAxes: [{
+                            display: true,
+                            ticks: {
+                                min: 0,
+                                steps: 10,
+                                stepValue: 5,
+                                max: 150
+                            }
+                        }]
+        },
          plugins: {
           zoom: {
             zoom: {
