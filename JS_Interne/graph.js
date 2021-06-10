@@ -14,6 +14,7 @@ var chart = new Chart(ctx, {
     
     // Configuration options go here
     options: {
+        scales: {
         yAxes: [{
                             display: true,
                             ticks: {
@@ -22,7 +23,8 @@ var chart = new Chart(ctx, {
                                 stepValue: 5,
                                 max: 100
                             }
-                        }],
+                        }]
+        },
          plugins: {
           zoom: {
             zoom: {
