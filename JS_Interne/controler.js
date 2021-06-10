@@ -121,8 +121,8 @@ function CapteurContentSwitch(id, type) {
             }
         }
 
-        chart.options.yAxes[0].ticks.min = minValue;
-        chart.options.yAxes[0].ticks.max = maxValue;
+        chart.options.scales.yAxes[0].ticks.min = minValue;
+        chart.options.scales.yAxes[0].ticks.max = maxValue;
 
         chart.data.datasets.push(newDataset);
         chart.update();
