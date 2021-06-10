@@ -108,6 +108,22 @@ function CapteurContentSwitch(id, type) {
             fill: false,
             spanGaps: true,
         };
+        let switchData = getAllDataFromASensor(id, type);
+        let minValue = switchData[0];
+        let maxValue = switchData[0];
+        for (let i = 0; i < switchData.length; i++) {
+            if(minValue > switchData[i]) {
+                minValue = switchData[i];
+            }
+
+            if(maxValue < switchData[i]) {
+                maxValue = switchData[i];
+            }
+        }
+
+        chart.options.yAxes.min = minValue;
+        chart.options.yAxes.max = maxValue;
+
         chart.data.datasets.push(newDataset);
         chart.update();
         placementChart.set(id+type,placementChart.size)
