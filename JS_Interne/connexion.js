@@ -1,7 +1,7 @@
 var mqtt;
 var reconnectTimeout = 2000;
-var host = "127.0.0.1";
-var port = 9001;
+var host = "192.168.44.11";
+var port = 443;
 
 //var host = "192.168.44.11";
 //var port = 443;
