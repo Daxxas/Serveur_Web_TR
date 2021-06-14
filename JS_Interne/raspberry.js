@@ -88,12 +88,11 @@ var port = 443;
 //var host = "192.168.44.11";
 //var port = 443;
 
-
-
 function onConnect() {
   console.log("Connected")
   mqtt.subscribe("data");
 }
+
 function onConnectionLost(responseObject) {
   var slideSource = document.getElementById('slideSource');
   slideSource.classList.toggle('fade');
@@ -150,6 +149,8 @@ function processing_monitoring(requete) {
     console.log("Mauvaise page")
   }
 
+  console.log(requete)
+  return;
   const obj = JSON.parse(requete) 
   var key;
   for(key in obj)
