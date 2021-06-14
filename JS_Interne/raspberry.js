@@ -149,18 +149,21 @@ function processing_monitoring(requete) {
     console.log("Mauvaise page")
   }
 
-  console.log(requete)
-  return;
-  const obj = JSON.parse(requete) 
-  var key;
-  for(key in obj)
-  {
-      if(key == "id"){
-          console.log("ID :", key)
-      }else{
-          console.log("Type :", key)
-      }
+  if(requete.search("71")){
+    const obj = JSON.parse(requete) 
+    var key;
+    for(key in obj)
+    {
+        if(key == "id"){
+            console.log("ID :", key)
+        }else{
+            console.log("Type :", key)
+        }
+    }
   }
+
+  console.log(requete)
+
   //Analyse de la trame
 
   /*Ordre des raspberry:
