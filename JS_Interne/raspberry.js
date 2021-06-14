@@ -143,6 +143,7 @@ function processing(requete)
     //Contacter le groupe monitoring pour les faire changer de channel
     if(requete.search("Ram") != -1){
         console.log("message from monitoring");
+        processing_monitoring(requete)
     const obj = JSON.parse(requete)
     action()    
     var key;
@@ -155,6 +156,45 @@ function processing(requete)
         }
     }
     }
+}
+
+function processing_monitoring(requete)
+{
+  if(!window.location.pathname == "/raspberry.html"){
+    console.log("Mauvaise page")
+  }
+  //Analyse de la trame
+
+  /*Ordre des raspberry:
+    chart.data.datasets[0].data[0] -> Rasp 1 Temperature
+    chart.data.datasets[0].data[1] -> Rasp 1 Ram
+    chart.data.datasets[0].data[2] -> Rasp 1 CPU
+    chart.data.datasets[0].data[3] -> Rasp 1 Storage
+
+    chart.data.datasets[1].data[0] -> Rasp 2 Temperature
+    chart.data.datasets[1].data[1] -> Rasp 2 Ram
+    chart.data.datasets[1].data[2] -> Rasp 2 CPU
+    chart.data.datasets[1].data[3] -> Rasp 2 Storage
+
+    chart.data.datasets[2].data[0] -> Rasp 3 Temperature
+    chart.data.datasets[2].data[1] -> Rasp 3 Ram
+    chart.data.datasets[2].data[2] -> Rasp 3 CPU
+    chart.data.datasets[2].data[3] -> Rasp 3 Storage
+
+    chart.data.datasets[3].data[0] -> Rasp 4 Temperature
+    chart.data.datasets[3].data[1] -> Rasp 4 Ram
+    chart.data.datasets[3].data[2] -> Rasp 4 CPU
+    chart.data.datasets[3].data[3] -> Rasp 4 Storage
+
+
+  */
+
+
+  //gna gna gna
+
+
+  chart.update()
+
 }
 
 MQTTconnect();
