@@ -11,11 +11,11 @@ function headerSwitch(childs, parentSwitch) {
             if(childSwitch[0].checked)
             {
                 childSwitch[0].click()
-                childSwitch[0].setAttribute("disabled", "")
                 childSwitch[0].removeAttribute("checked")
                 childSwitch[0].checked = false;
             }
-
+            
+            childSwitch[0].setAttribute("disabled", "")
 
         }
         else {
@@ -108,6 +108,25 @@ function CapteurContentSwitch(id, type) {
             fill: false,
             spanGaps: true,
         };
+
+        // Marche po, faut essayer avec le plugin de zoom à la place
+
+        // let switchData = getAllDataFromASensor(id, type);
+        // let minValue = switchData[0];
+        // let maxValue = switchData[0];
+        // for (let i = 0; i < switchData.length; i++) {
+        //     if(minValue > switchData[i]) {
+        //         minValue = switchData[i];
+        //     }
+        //
+        //     if(maxValue < switchData[i]) {
+        //         maxValue = switchData[i];
+        //     }
+        // }
+        //
+        // chart.options.scales.yAxes[0].ticks.min = parseFloat(minValue)s;
+        // chart.options.scales.yAxes[0].ticks.max = parseFloat(maxValue);
+
         chart.data.datasets.push(newDataset);
         chart.update();
         placementChart.set(id+type,placementChart.size)

@@ -76,10 +76,10 @@ canvas#mainGraph {
   }
 .chart-stats {
     margin-top: 10px;
+    margin-left: 10px;
     flex-wrap: nowrap;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     overflow: auto;
 }
 

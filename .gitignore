@@ -506,3 +506,4 @@ MigrationBackup/
 
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains,sublimetext,visualstudio,visualstudiocode
 web/src/websitedesign/.idea/workspace.xml
+.idea/Serveur_Web_TR.iml
